@@ -1,2 +1,23 @@
+@import './abstracts/variables';
+@import './abstracts/mixins';
+@import './abstracts/placeholder';
+@import './abstracts/modal-button';
+@import './abstracts/modal-card';
+
+@import './base/fonts';
+@import './base/base';
+@import './base/reset';
+
 @import './common';
-@import './example';
+
+@import './layout/main/auth';
+@import './layout/main/best-books';
+@import './layout/main/categories-list';
+@import './layout/main/categories-list-list';
+@import './layout/main/shopping-list';
+@import './layout/main/support';
+@import './layout/main/dark';
+@import './layout/header';
+
+
+@import './utils/breakpoints';
