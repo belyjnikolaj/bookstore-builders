@@ -47,6 +47,7 @@
   padding: 20px 20px;
   position: relative;
   z-index: 100;
+  max-width: $tablet;
 }
 .menu-conteiner-account {
   display: none;
@@ -334,6 +335,7 @@ input:checked + .slider:before {
     display: none;
   }
   .header-conteiner {
+    max-width: $desktop;
     padding: 14px 32px;
   }
   .nav-list {
@@ -459,6 +461,7 @@ input:checked + .slider:before {
 @media screen and(min-width: $desktop) {
   .header-conteiner {
     padding: 14px 24px;
+    max-width: $desktop;
   }
   .navigation {
     margin-right: auto; //746px is-open conteiner
@@ -468,5 +471,5 @@ input:checked + .slider:before {
   }
   .logo-name {
     margin-right: 76px;
-  }
+  }       
 }
