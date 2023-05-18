@@ -3,6 +3,7 @@ import { fetchBestSellers } from './js/best-selling-books';
 import { supportUkraine } from './js/support-ukraine';
 
 import { header } from './js/header';
+import { openBurgerMenu, closeBurgerMenu } from './js/open-menu';
 
 import { modalCard } from './js/modal-card';
 import { fetchCategories } from './js/categories-list-list';
@@ -20,4 +21,4 @@ fetchBestSellers()
   )
   .catch(err => console.log(err));
 
-import './js/auth.js'
+import './js/auth.js';
