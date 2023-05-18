@@ -43,3 +43,31 @@ export const closeBurgerMenu = () => {
 
 btnBurger.addEventListener('click', openBurgerMenu);
 btnClose.addEventListener('click', closeBurgerMenu);
+
+const activeShopingPage = document.querySelector('.nav-shopping-page');
+const activeHomePage = document.querySelector('.nav-home-page');
+const activeShopingPageBurger = document.querySelector(
+  '.shoppingListButtonMobile__link'
+);
+const activeHomePageBurger = document.querySelector('.homeButtonMobile__link');
+
+activeHomePage.addEventListener('click', () => {
+  activeHomePage.classList.add('link-active');
+  activeShopingPage.classList.remove('link-active');
+});
+
+activeShopingPage.addEventListener('click', () => {
+  activeShopingPage.classList.add('link-active');
+  activeHomePage.classList.remove('link-active');
+});
+
+activeShopingPageBurger.addEventListener('click', () => {
+  activeShopingPageBurger.classList.add('link-active');
+  activeHomePageBurger.classList.remove('link-active');
+  activeHomePage.classList.remove('link-active');
+});
+
+activeHomePageBurger.addEventListener('click', () => {
+  activeHomePageBurger.classList.add('link-active');
+  activeShopingPageBurger.classList.remove('link-active');
+});
