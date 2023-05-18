@@ -38,15 +38,17 @@ function createMarkupBooksCategories(arr) {
         <ul class="books_row">${books.slice(0, booksPerList).map(({ book_image, title, author, _id, }) =>
          ` <div>
              <a href="#" class="modal_popap" target="_self">
-               <div class="book-card__img-box--main-page">
-                 <img class="book-card__img--main-page"src="${book_image}" alt="" loading="lazy />
-               </div>
-               <div>
-                  <p class="info-title__item--main-page " id="title" class="cut-text">${title}</p>
+          <div class="book-card--main-page">
+              <div class="book-card__img-box--main-page">
+                <img class="book-card__img--main-page"src="${book_image}" alt="${title}" loading="lazy"/>
+              </div> 
+              <div class="info--main-page">
+                  <h3 class="info-title__item--main-page cut-text">${title}</h3>
                   <p class="info-author__item--main-page">${author}</p>
-                  <p class = "visually-hidden">${_id}</p>
-               </div>
-                  </a>
+                   <p class="visually-hidden">${_id}</p>             
+              </div>
+          </div>
+      </a>
             </div>`).join('')}</ul><button class="books-category-btn" data-list="${list_name}">see more</button>
       </div>
     `
