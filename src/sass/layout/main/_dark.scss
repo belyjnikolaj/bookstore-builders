@@ -1,32 +1,21 @@
+// ---стиль темної теми для боді
 .dark body {
   background-color: $primary-bgc-dark;
   color: $header-bgc-light;
 }
+//----темний стиль для хедер
+.dark .link {
+  color: $primary-text-dark;
+}
+.dark .link-active {
+  color: $primary-text-light;
+}
 .dark .header-conteiner {
   background-color: $header-bgc-dark;
-  border: 1.5px solid $header-bgc-light;
+  border: 1.5px solid $primary-text-dark;
 }
 
-.dark .logo-name {
-  color: $primary-text-dark;
-}
-
-.dark .nav-shopping-page__icon {
-  @media screen and (min-width: $tablet) {
-    fill: $primary-text-dark;
-  }
-}
-.dark .nav-shopping-page {
-  color: $primary-text-dark;
-}
-
-.dark .info-title__item {
-  color: $primary-text-dark;
-}
-
-.dark .books-category-btn {
-  color: $primary-text-dark;
-}
+// ---темний стиль для категорій книг
 
 .dark .list_name {
   color: $categories-text-dark;
@@ -36,34 +25,74 @@
   }
 }
 
-// .name__categore {
-//   font-weight: 700;
-//   font-size: 48px;
-//   line-height: 1.08;
-//   letter-spacing: -0.04em;
+.dark .info-title__item {
+  color: $primary-text-dark;
+}
 
-//   color: primary-text-light;
-// }
+.dark .categories .list_name.selected {
+  color: $accent-text-dark;
+}
 
-// .info-title__item {
-//   font-weight: 700;
-//   font-size: 16px;
-//   line-height: 1.125;
-//   letter-spacing: -0.04em;
+.dark .info-title__item--main-page {
+  color: $primary-text-dark;
+}
 
-//   color: $primary-text-light;
-// }
+.dark .books-category-btn {
+  color: $primary-text-dark;
+}
 
-// .info-author__item {
-//   font-style: italic;
-//   font-size: 12px;
-//   line-height: 1.17;
-//   letter-spacing: -0.04em;
+// ----стилі темної теми для модального вікна
+.dark .modal-card {
+  background-color: $primary-bgc-dark;
+  border: 2px solid $primary-text-dark;
+}
 
-//   color: $secondary-text;
-// }
-// .categories .list_name.selected {
-//   text-transform: uppercase;
-//   color: #4f2ee8;
-//   font-weight: 700;
-// }
+.dark .modal-card_close .icon-cross {
+  fill: #fff;
+}
+
+.dark .modal-card_title {
+  color: $primary-text-dark;
+}
+
+.dark .modal-card_desq {
+  color: $primary-text-dark;
+}
+
+.dark .button-add-shopping-list {
+  border: 2px solid #4f2ee8;
+  background-color: $primary-bgc-dark;
+  color: #fff;
+}
+
+// ---стилі темної теми на сторінку авторизації
+
+.dark .modalAuth-content {
+  background-color: $primary-bgc-dark;
+  border: 2px solid $header-bgc-light;
+  color: $primary-text-dark;
+}
+
+.dark .icon-close {
+  fill: $primary-text-dark;
+}
+
+.dark .input-auth {
+  border: 2px solid $primary-text-dark;
+}
+
+.dark .input-auth::placeholder {
+  color: $primary-text-dark;
+}
+.dark .icon-auth {
+  fill: $primary-text-dark;
+}
+
+.dark .signin-button,
+.dark .signup-button {
+  background-color: $primary-text-dark;
+  color: $header-bgc-dark;
+}
+.dark .active-tab {
+  color: $categories-text-dark;
+}
