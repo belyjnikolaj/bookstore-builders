@@ -16,7 +16,7 @@ import {
   onAuthStateChanged,
   signOut,
   fetchSignInMethodsForEmail,
-  updateProfile
+  updateProfile,
 } from 'firebase/auth';
 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
@@ -24,7 +24,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-const headerSignButton = document.querySelector('.login-thumb');
+const headerSignButton = document.querySelectorAll('#all-registration-btns');
 const modal = document.getElementById('modal-auth');
 const close = document.getElementById('close');
 const signinTab = document.getElementById('signin-tab');
@@ -62,21 +62,21 @@ function checkAuthState() {
     logOutButton.style.display = 'none';
     headerSignButton.style.display = 'block';
   }
-} 
+}
 function closeModal() {
   modal.style.display = 'none';
   signinContent.classList.remove('show');
   signinTab.classList.remove('is-active');
   signupTab.classList.add('is-active');
   checkAuthState();
-};
+}
 function successfulLogin() {
-   modal.style.display = 'none';
-   userButton.style.display = 'block';
-   userButton.textContent = user.displayName;
+  modal.style.display = 'none';
+  userButton.style.display = 'block';
+  userButton.textContent = user.displayName;
   logOutButton.style.display = 'block';
   checkAuthState();
-};
+}
 function signIn() {
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
@@ -176,7 +176,8 @@ function logOut() {
 }
 document.addEventListener('keydown', event => {
   if (event.key === 'Escape' && modal.style.display !== 'none') {
-    closeModal();}
+    closeModal();
+  }
 });
 close.addEventListener('click', () => {
   closeModal();
