@@ -111,7 +111,7 @@ function shoppingListMarkup(bookData) {
   </li>`
 }
 
-displayShoppingList()
+// displayShoppingList()
 
 
 
