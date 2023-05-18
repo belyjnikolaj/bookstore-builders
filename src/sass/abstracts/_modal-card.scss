@@ -202,19 +202,18 @@
   @media screen and (min-width: $tablet) {
     margin-top: 20px;
     margin-bottom: 0px;
-
   }
 
   @media screen and (min-width: $desktop) {
     margin-top: 20px;
     margin-bottom: 0px;
-
   }
 }
 
-.shopping-list-links_icon:hover {
-  box-shadow: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.15)) ;
-  mix-blend-mode: luminosity ;
+.shopping-list-links_icon:hover,
+.shopping-list-links_icon:focus {
+  box-shadow: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.15));
+  mix-blend-mode: luminosity;
 }
 
 // .shopping-list-links_item:hover {

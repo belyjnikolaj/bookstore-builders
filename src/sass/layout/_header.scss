@@ -11,7 +11,7 @@
 .link-active {
   font-weight: 700;
   font-size: 14px;
-  line-height: 18px;
+  line-height: 1.29;
   letter-spacing: -0.04em;
   display: block;
   justify-content: center;
@@ -50,7 +50,7 @@
   max-width: $tablet;
 }
 .menu-conteiner-account {
-  display: block;
+  display: none;
 }
 
 .hidden {
@@ -156,6 +156,7 @@ input:checked + .slider:before {
   height: 20px;
   width: 20px;
 }
+
 .burger {
   background-color: transparent;
   //   display: inline-flex;
@@ -177,9 +178,76 @@ input:checked + .slider:before {
 }
 
 @media screen and (max-width: 767px) {
+  .logOutAuthMobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 24px;
+    border: 1.5px solid $primary-text-light;
+    border-radius: 18px;
+    gap: 4px;
+    position: absolute;
+    bottom: 20px;
+  }
+  .shoppingListButtonMobile-list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .shoppingListButtonMobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $primary-bgc-light;
+  }
+  .shoppingListButtonMobile:hover,
+  .homeButtonMobile:hover {
+    color: $accent-text-light;
+    cursor: pointer;
+  }
+  .shoppingListButtonMobile__icon {
+    color: $primary-bgc-light;
+  }
+  .homeButtonMobile__link .shoppingListButtonMobile__link {
+    color: $header-bgc-light;
+  }
+  .shoppingListButtonMobile__icon {
+    height: 20px;
+    width: 20px;
+  }
+
   .logged-in__btn,
   .log-out__btn {
     display: none;
+  }
+  .mobile-menu-logged-conteiner {
+    margin: 0 auto;
+    padding: 30px 0 20px;
+  }
+  .userInAuthMobile {
+    background: none;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 130px;
+
+    & span {
+      font-weight: 700;
+      font-size: 22px;
+      color: $header-bgc-light;
+      letter-spacing: -0.02em;
+    }
+  }
+  .shoppingListButtonMobile-list {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
+    align-items: flex-start;
+  }
+  .userInAuthMobile__icon:hover,
+  .userInAuthMobile__icon:focus {
+    fill: $accent-text-light;
   }
 
   .burger {
@@ -403,6 +471,5 @@ input:checked + .slider:before {
   }
   .logo-name {
     margin-right: 76px;
-  }
-       
+  }       
 }
