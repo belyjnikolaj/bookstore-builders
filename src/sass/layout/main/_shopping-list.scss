@@ -1,5 +1,6 @@
 .shopping-list__title {
     margin-top: 40px;
+    margin-bottom: 0;
 
     font-family: 'DM Sans';
     font-weight: 700;
@@ -58,9 +59,10 @@
 }
 
 .shopping-list {
+
+    margin-top: 40px;
     display: flex;
     padding: 0;
-    margin: 40 0 0 0;
     list-style: none;
     gap: 20px;
 }
@@ -100,6 +102,13 @@
         width: 100px;
         height: 142px;
         border-radius: 8px;
+
+        @media screen and (min-width: $tablet) {
+
+            width: 116px;
+            height: 165px;
+        }
+        
     }
 
 
@@ -185,10 +194,12 @@
         padding: 0;
         margin: 0;
         list-style: none;
+        align-items: center; 
+        align-items: flex-end; 
 
         @media screen and (min-width: $tablet) {
     
-            align-items: flex-end; 
+            align-items: center; 
         }
 
         
