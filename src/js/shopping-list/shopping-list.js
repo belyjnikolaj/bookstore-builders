@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-
+import { supportUkraine } from '../support-ukraine';
 
 import sprite from '../../images/sprite.svg';
 
@@ -11,7 +11,7 @@ import appleXIcone from '../../images/shopping-list/apple-icon@2x.png'
 import bookshopIcone from '../../images/shopping-list/bookshop-icon.png'
 import bookshopXIcone from '../../images/shopping-list/bookshop-icon@2x.png'
 
-
+supportUkraine();
 
 async function fetchBook() { 
 
@@ -111,7 +111,7 @@ function shoppingListMarkup(bookData) {
   </li>`
 }
 
-displayShoppingList()
+// displayShoppingList()
 
 
 
