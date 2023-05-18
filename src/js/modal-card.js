@@ -72,7 +72,7 @@ const renderBooks = (data, refs) => {
         <p class="modal-card_desq">${book.description}</p>
         <ul class="shopping-list-links">
           <li shopping-list-links_item>
-            <a class="shopping-list-links_icon href="${amazonLink.url}">
+            <a class="shopping-list-links_icon" href="${amazonLink.url}">
               <picture>
                 <source
                   srcset="${amazonIcone} 1x, ${amazonXIcone} 2x"
@@ -83,7 +83,7 @@ const renderBooks = (data, refs) => {
             </a>
           </li>
           <li>
-            <a href="${bookshopLink.url}">
+            <a class="shopping-list-links_icon" href="${bookshopLink.url}">
               <picture>
                 <source
                   srcset="${appleIcone} 1x, ${appleXIcone} 2x"
@@ -94,7 +94,7 @@ const renderBooks = (data, refs) => {
             </a>
           </li>
           <li>
-            <a href="${appleBooksLink.url}">
+            <a class="shopping-list-links_icon" href="${appleBooksLink.url}">
               <picture>
                 <source
                   srcset="${bookshopIcone} 1x, ${bookshopXIcone} 2x"

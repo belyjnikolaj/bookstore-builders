@@ -1,39 +1,4 @@
-import { fetchBestSellers } from '/src/js/best-selling-books';
-import {
-  displayBooksAndHighlightLastWord,
-  truncateTextToFitOneLine,
-} from '/src/js/helpers';
-
-const categoriesList = document.querySelector('.categories');
-const bestSellers = document.querySelector('.js-best-sellers');
-const booksElement = document.querySelector('.books');
-const containerBooks = document.querySelector('.conteiner__books');
-const booksHeroTitleElement = document.querySelector(
-  '.books_hero_title--color_accent'
-);
-
-
-const nameCategoryBox = document.querySelector('.name__categore-box');
-
-categoriesList.addEventListener('click', event => {
-  const selectedCategory = event.target.textContent;
-  nameCategoryBox.textContent = selectedCategory; // Оновлюємо текстовий вміст елементу nameCategoryBox
-
-  if (selectedCategory === 'All categories') {
-    fetchBestSellers(); // Викликаємо функцію для отримання найкращих книжок
-    booksElement.classList.remove('active'); // Видаляємо клас активності у елемента booksElement
-  } else {
-    // Викликаємо функцію для відображення книг з обраної категорії
-    displayBooksByCategory(selectedCategory);
-    booksElement.classList.add('active'); // Додаємо клас активності до елемента booksElement
-  }
-});
-
-booksHeroTitleElement.addEventListener('click', () => {
-  const bestSellersElement = document.querySelector('.js-best-sellers');
-  bestSellersElement.classList.add('active');
-});
-
+const booksList = document.querySelector('.conteiner__books .books');
 async function fetchCategories() {
   try {
     const categories = await getCategories();
@@ -59,19 +24,26 @@ async function getCategories() {
 }
 
 async function displayBooksByCategory(category) {
-  const books = await getBooksByCategory(category);
-  displayBooksAndHighlightLastWord(books, category);
-  booksElement.classList.add('active');
+  const booksList = document.querySelector('.conteiner__books .books');
+  booksList.innerHTML = ''; // Очищення списку книг перед вставкою нових книг
+
+  const categoryName = document.querySelector('.name__categore-box');
 
   if (category === 'All categories') {
-    nameCategoryBox.innerHTML = `
-      <h1 class="books_hero_title">
-        Best Sellers <span class="books_hero_title--color_accent">Books</span>
-      </h1>
-    `;
+    categoryName.style.display = 'none'; // Приховуємо блок з назвою категорії
+    const bestSellers = document.querySelector('.js-best-sellers');
+    bestSellers.style.display = 'block';
   } else {
-    nameCategoryBox.textContent = category;
+    categoryName.style.display = 'block'; // Відображаємо блок з назвою категорії
+    const bestSellers = document.querySelector('.js-best-sellers');
+    bestSellers.style.display = 'none';
+    categoryName.innerHTML = `<h2 class="name__categore">${highlightLastWord(
+      category
+    )}</h2>`;
   }
+
+  const books = await getBooksByCategory(category);
+  displayBooks(books, category);
 }
 
 async function getBooksByCategory(category) {
@@ -81,11 +53,14 @@ async function getBooksByCategory(category) {
   return response.json();
 }
 
-function displayCategories(categories) {
-  categoriesList.insertAdjacentHTML(
-    'beforeend',
-    createMarkupCategories(categories)
-  );
+function displayBooks(books, selectedCategory) {
+  booksList.innerHTML = ''; // Очищення списку книг перед вставкою нових книг
+  booksList.insertAdjacentHTML('beforeend', createMarkupBooks(books));
+
+  const categoryName = document.querySelector('.name__categore-box');
+  categoryName.innerHTML = `<h2 class="name__categore">${highlightLastWord(
+    selectedCategory
+  )}</h2>`;
 }
 
 function createMarkupCategories(arr) {
@@ -98,16 +73,18 @@ function createMarkupCategories(arr) {
     .join('');
 
   return `<ul>
-            <li class="list_name js-all-categories">All categories</li>
+            <li class="list_name js-all-categories ">All categories</li>
             ${categoriesHTML}
           </ul>`;
 }
 
 function createMarkupBooks(arr) {
-  return arr
-    .map(({ book_image, title, author }) => {
-      const truncatedTitle = truncateTextToFitOneLine(title);
-      return ` <a href="#" class="modal_popap" target="_self">
+  return (
+    `<div class="books-container">` + // Add container div
+    arr
+      .map(({ book_image, title, author }) => {
+        const truncatedTitle = truncateTextToFitOneLine(title, 200);
+        return ` <a href="#" class="modal_popap" target="_self">
           <div class="book-card">
               <div class="book-card__img-box">
                 <img class="book-card__img"src="${book_image}" alt="${title}" loading="lazy"/>
@@ -118,55 +95,86 @@ function createMarkupBooks(arr) {
               </div>
           </div>
       </a>`;
-    })
-    .join('');
+      })
+      .join('') +
+    `</div>`
+  ); // Close container div
 }
 
+function highlightLastWord(str) {
+  const words = str.split(' ');
+  words[words.length - 1] = `<span style="color: #4F2EE8">${
+    words[words.length - 1]
+  }</span>`;
+  return words.join(' ');
+}
 
+function truncateTextToFitOneLine(text, maxWidth) {
+  const ellipsis = '...';
+  let truncatedText = text;
+  while (truncatedText.length > 0 && getTextWidth(truncatedText) > maxWidth) {
+    truncatedText = truncatedText.slice(0, -1);
+  }
+  if (truncatedText.length < text.length) {
+    truncatedText = truncatedText.slice(0, -3) + ellipsis;
+  }
+  return truncatedText;
+}
 
-function addEventListeners() {
-  categoriesList.addEventListener('click', async event => {
-    if (event.target.classList.contains('js-all-categories')) {
-      await fetchBestSellers();
-    }
+function getTextWidth(text) {
+  const canvas = document.createElement('canvas');
+  const context = canvas.getContext('2d');
+  context.font = window
+    .getComputedStyle(document.body)
+    .getPropertyValue('font');
+  return context.measureText(text).width;
+}
+
+function displayCategories(categories) {
+  const categoriesList = document.querySelector('.categories');
+  categoriesList.insertAdjacentHTML(
+    'beforeend',
+    createMarkupCategories(categories)
+  );
+
+  const allCategories = document.querySelector('.js-all-categories');
+  allCategories.classList.add('active'); // Додаємо клас 'active' до "All categories"
+
+  allCategories.addEventListener('click', async () => {
+    localStorage.removeItem('selectedCategory');
+    await displayBooksByCategory('All categories');
   });
-
+}
+function addEventListeners() {
+  const categoriesList = document.querySelector('.categories');
   categoriesList.addEventListener('click', async event => {
     if (event.target.classList.contains('list_name')) {
-      localStorage.setItem('selectedCategory', event.target.textContent);
-      await displayBooksByCategory(event.target.textContent);
+      const selectedCategory = event.target.textContent;
+      localStorage.setItem('selectedCategory', selectedCategory);
+
+      if (selectedCategory === 'All categories') {
+        const categoryName = document.querySelector('.name__categore-box');
+        categoryName.style.display = 'none'; // Приховуємо блок з назвою категорії
+        const bestSellers = document.querySelector('.js-best-sellers');
+        bestSellers.style.display = 'block';
+
+        // Очищення списку книг перед вставкою нових книг
+        booksList.innerHTML = '';
+
+        await displayBooksByCategory(selectedCategory);
+      } else {
+        const categoryName = document.querySelector('.name__categore-box');
+        categoryName.style.display = 'block'; // Відображаємо блок з назвою категорії
+        const bestSellers = document.querySelector('.js-best-sellers');
+        bestSellers.style.display = 'none';
+
+        await displayBooksByCategory(selectedCategory);
+      }
     }
   });
-
-  //   booksElement.addEventListener('click', event => {
-  //     if (event.target.classList.contains('modal_popap')) {
-  //       const bookTitle =
-  //         event.target.querySelector('.info-title__item').textContent;
-  //       const bookAuthor =
-  //         event.target.querySelector('.info-author__item').textContent;
-  //       showModal(bookTitle, bookAuthor);
-  //     }
-  //   });
 }
 
-categoriesList.addEventListener('click', event => {
-  if (event.target.classList.contains('list_name')) {
-    const categoryItems = categoriesList.querySelectorAll('.list_name');
-    categoryItems.forEach(item => {
-      item.classList.remove('selected');
-    });
-
-    const selectedCategory = event.target;
-    selectedCategory.classList.add('selected');
-    localStorage.setItem('selectedCategory', selectedCategory.textContent);
-  }
-});
-
-addEventListeners(); // додаємо прослуховувачів подій
-
+fetchCategories();
 
 export { fetchCategories, createMarkupBooks, displayBooksByCategory };
-
-
-
 
