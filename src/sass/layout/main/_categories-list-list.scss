@@ -20,44 +20,53 @@ width: 100%;
     
   }
 }
+.sidebar{
+  
+  @media screen and (min-width: $tablet) {
+      display: flex;
+      gap: 32px;
+  }
 
+  @media screen and (min-width: $desktop) {
+    display: block;    
+  }
+}
 .sidebar-container {
   width: 335px;
   height: 228px;
   width: 100%;
-
+  /* полоса прокрутки (скроллбар) */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 167px;
+      background-color: #F6F6F6;
+    }
+  
+    ::-webkit-scrollbar-thumb {
+      background-color: #E0E0E0;
+      border-radius: 9em;
+      box-shadow: inset 1px 1px 10px #f3faf7;
+    }
+  
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: inherit;
+    }
   @media screen and (min-width: $tablet) {
-    padding: 0 32px;
-    display: flex;
-    justify-content: center;
-    gap: 32px;
+    // padding: 0 32px;
+    
     width: 337px;
     height: 472px;
-    width: 100%;
+    
   }
 
   @media screen and (min-width: $desktop) {
     display: block;
     flex-direction: column;
+    padding: 0;
     width: 356px;
     height: 472px;
   }
-  /* полоса прокрутки (скроллбар) */
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 167px;
-    background-color: #F6F6F6;
-  }
 
-  ::-webkit-scrollbar-thumb {
-    background-color: #E0E0E0;
-    border-radius: 9em;
-    box-shadow: inset 1px 1px 10px #f3faf7;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background-color: inherit;
-  }
 
   
 }
@@ -130,7 +139,7 @@ width: 100%;
   }
 
   @media screen and (min-width: $desktop) {
-    
+    padding-left: 33px;
 
   }
 }
@@ -152,11 +161,18 @@ width: 100%;
 
 .name__categore {
   font-weight: 700;
-  font-size: 48px;
-  line-height: 1.08;
+  font-size: 32px;
+  line-height: 1.1875;
   letter-spacing: -0.04em;
-
-  color: primary-text-light;
+  color: $primary-text-light;
+    @media screen and (min-width: $tablet) {
+      font-size: 48px;
+      line-height: 1.08;
+    }
+              @media screen and (min-width: $desktop) {
+          
+      }
+ 
 }
 
 .books {
