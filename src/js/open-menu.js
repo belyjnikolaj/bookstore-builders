@@ -1,4 +1,4 @@
-import checkAuthState from './auth'
+import {checkAuthState} from './auth';
 
 const menuBurgerConteiner = document.querySelector('.js-menu-container');
 const btnBurger = document.querySelector('.open-menu-btn');
