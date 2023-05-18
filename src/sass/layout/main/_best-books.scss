@@ -42,6 +42,9 @@
     list-style-type: none;
 }
 
+.book-card--main-page{
+width: 335px;
+}
 
 .book-card__img-box--main-page {
     width: 335px;
@@ -110,6 +113,11 @@
     align-self: flex-end;
     flex-grow: 0;
     white-space: nowrap;
+    cursor: pointer;
+    &:hover, &:focus {
+            color:#4F2EE8;
+            
+        }
 }
 
 .cut-text {
@@ -140,7 +148,9 @@
     .books_list_category {
         max-width: 704px;
     }
-
+.book-card--main-page {
+    width: 218px;
+}
     .book-card__img-box--main-page {
         width: 218px;
     }
@@ -154,7 +164,9 @@
     .info-author__item--main-page {
         padding-bottom: 32px;
     }
-
+   .book-card--main-page {
+        width: 180px;
+   }
     .book-card__img--main-page {
         height: 256px;
         width: 180px;
