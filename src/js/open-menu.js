@@ -1,28 +1,45 @@
-(() => {
-  const mobileMenu = document.querySelector('.js-menu-container');
-  const openMenuBtn = document.querySelector('.js-open-menu');
-  const closeMenuBtn = document.querySelector('.js-close-menu');
+const menuBurgerConteiner = document.querySelector('.js-menu-container');
+const btnBurger = document.querySelector('.open-menu-btn');
+const btnClose = document.querySelector('.close-menu-btn');
 
-  const toggleMenu = () => {
-    const isMenuOpen =
-      openMenuBtn.getAttribute('aria-expanded') === 'true' || false;
-    openMenuBtn.setAttribute('aria-expanded', !isMenuOpen);
-    mobileMenu.classList.toggle('is-open');
+const isLogged = true;
+// markup()
 
-    const scrollLockMethod = !isMenuOpen
-      ? 'disableBodyScroll'
-      : 'enableBodyScroll';
-    bodyScrollLock[scrollLockMethod](document.body);
-  };
+export const openBurgerMenu = () => {
+  menuBurgerConteiner.classList.add('open-menu');
+  btnBurger.classList.add('hidden');
+  btnClose.classList.remove('hidden');
+};
 
-  openMenuBtn.addEventListener('click', toggleMenu);
-  closeMenuBtn.addEventListener('click', toggleMenu);
+export const closeBurgerMenu = () => {
+  menuBurgerConteiner.classList.remove('open-menu');
+  btnBurger.classList.remove('hidden');
+  btnClose.classList.add('hidden');
+};
 
-  // Close the mobile menu on wider screens if the device orientation changes
-  window.matchMedia('(min-width: 768px)').addEventListener('change', e => {
-    if (!e.matches) return;
-    mobileMenu.classList.remove('is-open');
-    openMenuBtn.setAttribute('aria-expanded', false);
-    bodyScrollLock.enableBodyScroll(document.body);
-  });
-})();
+const markup = () => {
+  if (isLogged) {
+    return ` 
+    <image /> <p> Name </p>
+    
+    <ul class="nav-list list">
+    <li class="nav-list__item"><a class="link link-active nav-home-page" href="/src/index.html">HOME</a>
+    </li>
+    <li class="nav-list__item"><a class="link nav-shopping-page" href="#">SHOPPING LIST<svg class="nav-shopping-page__icon"><use href="/src/images/sprite.svg#icon-uil_cart"></svg></a></li>
+    </ul>
+
+    <button class="loggedOutBtn">Log out </button><svg class="loggedOutBtn__icon" width="20" height="20">
+    <use href="/src/images/sprite.svg#icon-arrow-right"></use>
+    </svg>
+   `;
+  }
+  if (!isLogged) {
+    return ` <button class="auth_button" type="button"><span>Sign up</span><svg class="call-to-registration-btn__icon" width="20" height="20">
+    <use href="/src/images/sprite.svg#icon-arrow-right"></use>
+    </svg></button>
+   `;
+  }
+};
+
+btnBurger.addEventListener('click', openBurgerMenu);
+btnClose.addEventListener('click', closeBurgerMenu);
