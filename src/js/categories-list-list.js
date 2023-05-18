@@ -24,16 +24,22 @@ async function getCategories() {
 }
 
 async function displayBooksByCategory(category) {
+  const booksList = document.querySelector('.conteiner__books .books');
   booksList.innerHTML = ''; // Очищення списку книг перед вставкою нових книг
 
+  const categoryName = document.querySelector('.name__categore-box');
+
   if (category === 'All categories') {
-    // Відображення блоку з кращими книгами
+    categoryName.style.display = 'none'; // Приховуємо блок з назвою категорії
     const bestSellers = document.querySelector('.js-best-sellers');
     bestSellers.style.display = 'block';
   } else {
-    // Приховання блоку з кращими книгами
+    categoryName.style.display = 'block'; // Відображаємо блок з назвою категорії
     const bestSellers = document.querySelector('.js-best-sellers');
     bestSellers.style.display = 'none';
+    categoryName.innerHTML = `<h2 class="name__categore">${highlightLastWord(
+      category
+    )}</h2>`;
   }
 
   const books = await getBooksByCategory(category);
@@ -139,7 +145,6 @@ function displayCategories(categories) {
     await displayBooksByCategory('All categories');
   });
 }
-
 function addEventListeners() {
   const categoriesList = document.querySelector('.categories');
   categoriesList.addEventListener('click', async event => {
@@ -148,8 +153,21 @@ function addEventListeners() {
       localStorage.setItem('selectedCategory', selectedCategory);
 
       if (selectedCategory === 'All categories') {
-        await displayAllBooks(); // Ваша функція для відображення всіх книг
+        const categoryName = document.querySelector('.name__categore-box');
+        categoryName.style.display = 'none'; // Приховуємо блок з назвою категорії
+        const bestSellers = document.querySelector('.js-best-sellers');
+        bestSellers.style.display = 'block';
+
+        // Очищення списку книг перед вставкою нових книг
+        booksList.innerHTML = '';
+
+        await displayBooksByCategory(selectedCategory);
       } else {
+        const categoryName = document.querySelector('.name__categore-box');
+        categoryName.style.display = 'block'; // Відображаємо блок з назвою категорії
+        const bestSellers = document.querySelector('.js-best-sellers');
+        bestSellers.style.display = 'none';
+
         await displayBooksByCategory(selectedCategory);
       }
     }
@@ -157,7 +175,6 @@ function addEventListeners() {
 }
 
 fetchCategories();
-
 
 export { fetchCategories, createMarkupBooks, displayBooksByCategory };
 
