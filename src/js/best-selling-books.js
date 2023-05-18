@@ -7,6 +7,18 @@ const bestSellersGal = document.querySelector('.js-best-sellers');
 const categories = document.querySelector('.categories');
 let width = window.innerWidth;
 let booksPerList = 1;
+
+addEventListener('resize', () => {
+  if (
+    (window.innerWidth > 767 && width < 768) ||
+    (window.innerWidth > 1439 && width< 1440) ||
+    (window.innerWidth < 1440 && width > 1439) ||
+    (window.innerWidth < 768 && width > 767)
+  ) {
+    location.reload();
+  }
+});
+
 function viewPort() {
   if (width <= 768) {
     booksPerList = 1;
@@ -16,13 +28,14 @@ function viewPort() {
     booksPerList = 5;
   }
 }
-viewPort();
+
 async function fetchBestSellers() {
   const resp = await axios.get(`https://books-backend.p.goit.global/books/top-books`).then(response => response.data);
   return resp;
 }
 fetchBestSellers()
   .then(data => {
+    viewPort();
     bestSellersGal.insertAdjacentHTML('beforeend', createMarkupBooksCategories(data))
      addClickListeners();
   },
