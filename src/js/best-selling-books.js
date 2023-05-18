@@ -52,27 +52,33 @@ function createMarkupBooksCategories(arr) {
     `
   ).join('');
 }
-// Viktoriia added //
+
 // function addClickListeners() {
-//   const bookCards = document.querySelectorAll('.book-card');
+//   const bookCards = document.querySelectorAll('.js-best-sellers');
 //   bookCards.forEach(card => {
 //     const id = card.querySelector('.visually-hidden').textContent;
+//     addToShopList(evt);
 //     card.addEventListener('click', () => {
 //       openModalCard(id);
+//       document.getElementById('data-modal-card').classList.remove('is-hidden');
 //     });
 //   });
 // }
+
+// vika MAY 17
 function addClickListeners() {
-  const bookCards = document.querySelectorAll('.js-best-sellers');
+  const bookCards = document.querySelectorAll('.js-best-sellers .modal_popap');
   bookCards.forEach(card => {
     const id = card.querySelector('.visually-hidden').textContent;
-    addToShopList(evt);
     card.addEventListener('click', () => {
       openModalCard(id);
       document.getElementById('data-modal-card').classList.remove('is-hidden');
     });
   });
 }
+// vika MAY 17
+
+
 // РОЗРОЗБКА КНОПКИ----------------------------------
 const booksElement = document.querySelector('.books');
 bestSellersGal.addEventListener('click', handleCategoryBtnClick);
@@ -97,3 +103,4 @@ function handleCategoryBtnClick(evt) {
     err => { console.log(err) });
 }
 export { fetchBestSellers };
+

@@ -59,67 +59,6 @@ function clearModalContent() {
   }
 }
 
-// const renderBooks = (data, refs) => {
-//   const book = data.data;
-//   const amazonLink = book.buy_links.find(link => link.name === 'Amazon');
-//   const bookshopLink = book.buy_links.find(link => link.name === 'Bookshop');
-//   const appleBooksLink = book.buy_links.find(
-//     link => link.name === 'Apple Books'
-//   );
-//   console.log({ book });
-//   const bookElMarkup = `
-//   <div class="modal-card-div">
-//   <img class="modal-card_img" src="${book.book_image}" alt="${book.title}" />
-//   <div class="modal-card-info">
-//   <h3 class="modal-card_title">${book.title}</h3>
-//   <p class="modal-card_author">${book.author}</p>
-//   <p class="modal-card_desq">${book.description}</p>
-//   <ul class="shopping-list-links">
-//     <li><a href="${amazonLink.url}">${amazonLink.name}
-//     <picture>
-//     <source
-//       srcset="
-//     ${amazonIcone}   1x,
-//     ${amazonXIcone} 2x
-//   "
-//       type="image/png"
-//     />
-//     <img class="amazon-icon" src="${amazonIcone} " alt="Amazon" />
-//   </picture></a></li>
-//     <li><a href="${bookshopLink.url}">${bookshopLink.name}
-//     <picture>
-//     <source
-//       srcset="
-//   ${appleIcone}  1x,
-//   ${appleXIcone} 2x
-//   "
-//       type="image/png"
-//     />
-//     <img class="apple-icon" src="${appleIcone}  " alt="Apple" />
-//   </picture></a></li>
-//     <li><a href="${appleBooksLink.url}">${appleBooksLink.name}
-//         <picture>
-//         <source
-//           srcset="
-//       ${bookshopIcone}   1x,
-//       ${bookshopXIcone} 2x
-//       "
-//           type="image/png"
-//         />
-//         <img class="apple-icon" src="${bookshopIcone}  " alt="Bookshop" />
-//       </picture>
-//     </a></li>
-//   </ul>
-//   </div>
-//   </div>
-//   <div class="button-shopping">
-//   <button class="button-add-shopping-list btn-modal-card" type="button">Add to Shopping List</button>
-//   </div>
-//   `;
-
-//   refs.modalCard.insertAdjacentHTML('beforeend', bookElMarkup);
-// };
-
 const renderBooks = (data, refs) => {
   const book = data.data;
   const amazonLink = book.buy_links.find(link => link.name === 'Amazon');
@@ -128,6 +67,7 @@ const renderBooks = (data, refs) => {
     link => link.name === 'Apple Books'
   );
   console.log({ book });
+
   const bookElMarkup = `
     <div class="modal-card-div">
       <img class="modal-card_img" src="${book.book_image}" alt="${book.title}" />
@@ -172,6 +112,11 @@ const renderBooks = (data, refs) => {
         </ul>
       </div>
     </div>
+    <button class="modal-card_close" type="button">
+    <svg class="icon-cross" height="12" width="12">
+      <use href="${sprite}#icon-close"></use>
+    </svg>
+  </button>
     <div class="button-shopping">
       <button class="button-add-shopping-list btn-modal-card" type="button">Add to Shopping List</button> 
     </div>
@@ -185,3 +130,30 @@ document.addEventListener('keydown', function (event) {
     closeModalCard();
   }
 });
+
+//best-selling-books
+
+//vika
+// function addClickListeners() {
+//   const bookCards = document.querySelectorAll('.js-best-sellers .modal_popap');
+//   bookCards.forEach(card => {
+//     const id = card.querySelector('.visually-hidden').textContent;
+//     card.addEventListener('click', () => {
+//       openModalCard(id);
+//       document.getElementById('data-modal-card').classList.remove('is-hidden');
+//     });
+//   });
+// }
+
+// fetchBestSellers()
+//   .then(data => {
+//     bestSellersGal.insertAdjacentHTML(
+//       'beforeend',
+//       createMarkupBooksCategories(data)
+//     );
+//     addClickListeners();
+//   })
+//   .catch(err => console.log(err));
+//vika
+
+///////////////
