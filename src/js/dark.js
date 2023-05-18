@@ -1,4 +1,8 @@
-export function darkMode() {
+const colorSwitcher = document.querySelector('.js-color-switcher');
+
+colorSwitcher.addEventListener('click', darkMode);
+
+function darkMode() {
   // перевірка наявності значення теми в локалсторедж
   if (localStorage.getItem('theme') === 'dark') {
     localStorage.removeItem('theme');
@@ -22,3 +26,5 @@ function addDarkClass() {
   } catch (err) {}
 }
 addDarkClass();
+
+export { darkMode };

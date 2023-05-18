@@ -26,7 +26,7 @@
   transform: translate(-50%, -50%);
   border-radius: 4px;
   background-color: $primary-bgc-light;
-  border: 2px solid $header-bgc-light;
+  border: 2px solid $header-bgc-dark;
   border-radius: 18px;
   color: $primary-text-light;
 }
@@ -211,28 +211,28 @@
 }
 
 //DARK STYLE
-.modalAuth-content {
-  background-color: $primary-bgc-dark;
-  border: 2px solid $header-bgc-dark;
-  color: $primary-text-dark;
-}
-.icon-close{
-  fill: $primary-text-dark;
-}
-.input-auth{
-    border: 2px solid $primary-text-dark; 
-}
-.input-auth::placeholder {
-  color: $primary-text-dark;
-}
-.icon-auth {
-  fill: $primary-text-dark;
-}
-.signin-button,
-.signup-button {
-  color: $primary-bgc-dark;
-  background-color: $primary-text-dark;
-}
-.active-tab {
-  color: $categories-text-dark;
-}
+// .modalAuth-content {
+//   background-color: $primary-bgc-dark;
+//   border: 2px solid $header-bgc-dark;
+//   color: $primary-text-dark;
+// }
+// .icon-close{
+//   fill: $primary-text-dark;
+// }
+// .input-auth{
+//     border: 2px solid $primary-text-dark;
+// }
+// .input-auth::placeholder {
+//   color: $primary-text-dark;
+// }
+// .icon-auth {
+//   fill: $primary-text-dark;
+// }
+// .signin-button,
+// .signup-button {
+//   color: $primary-bgc-dark;
+//   background-color: $primary-text-dark;
+// }
+// .active-tab {
+//   color: $categories-text-dark;
+// }
