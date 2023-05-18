@@ -158,8 +158,6 @@ function addEventListeners() {
 
 fetchCategories();
 
+
 export { fetchCategories, createMarkupBooks, displayBooksByCategory };
-
-
-
 
