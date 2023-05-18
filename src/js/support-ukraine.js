@@ -13,11 +13,12 @@ const supportUkraine = supportList
                 </div>`;
   })
   .join(' ');
-// console.log(supportUkraine);
+console.log(supportUkraine);
 list.insertAdjacentHTML('beforeend', supportUkraine);
 
 const swiper = new Swiper('.swiper-container', {
   // настройки свайпера з поверненням в кінці до першого слайду
+  observer: true,
   rewind: true,
   slidesPerView: 4,
   breakpoints: {
@@ -51,5 +52,5 @@ const swiper = new Swiper('.swiper-container', {
     paginationBulletMessage: 'Go to slide {{index}}',
   },
 });
-
+swiper.update();
 export { supportUkraine };

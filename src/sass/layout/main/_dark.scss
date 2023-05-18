@@ -109,3 +109,28 @@
 .dark .active-tab {
   color: $categories-text-dark;
 }
+
+// --стилі темної теми для шопінг ліст
+
+.dark .shopping-list__title {
+  color: $primary-text-dark;
+}
+
+.dark .empty-list {
+  &__paragraph {
+    color: $message-absent-text-dark;
+  }
+}
+
+.dark .card-shopping {
+  &__container {
+    background: $header-bgc-dark;
+  }
+
+  &__title {
+    color: $primary-text-dark;
+  }
+  &__description {
+    color: $primary-text-dark;
+  }
+}
