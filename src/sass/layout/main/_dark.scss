@@ -16,6 +16,19 @@
 }
 
 // ---темний стиль для категорій книг
+.dark .sidebar-container {
+  ::-webkit-scrollbar {
+    background-color: $primary-bgc-dark;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: $categories-text-light;
+  }
+}
+
+.dark .name__categore {
+  color: $primary-text-dark;
+}
 
 .dark .list_name {
   color: $categories-text-dark;
