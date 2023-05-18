@@ -10,23 +10,19 @@ import appleXIcone from '../images/shopping-list/apple-icon@2x.png';
 import bookshopIcone from '../images/shopping-list/bookshop-icon.png';
 import bookshopXIcone from '../images/shopping-list/bookshop-icon@2x.png';
 
+
+let isModalOpen = false;
 const bookApi = new BookAPI();
 
 const URL_API = 'https://books-backend.p.goit.global/books/';
 
 const refs = {
-  openModalCardBtn: document.querySelector(
-    'button[name="data-modal-card-open"]'
-  ),
-  modalCard: document.querySelector('.modal-card'),
-
-  closeModalCardBtn: document.querySelector('.modal-card_close'),
+  modalCardWrapper: document.querySelector('.modal-card_backdrop'),
 };
-
-refs.openModalCardBtn.addEventListener('click', openModalCard);
-refs.closeModalCardBtn.addEventListener('click', closeModalCard);
-
-let isModalOpen = false;
+let modalCardClose = '';
+if (isModalOpen) {
+  modalCardClose = modalCardWrapper.querySelector('.modal-card_close');
+}
 
 export function openModalCard(bookId) {
   if (!isModalOpen) {
@@ -36,8 +32,6 @@ export function openModalCard(bookId) {
       .then(data => renderBooks(data, refs))
       .catch(e => console.log(e));
     isModalOpen = true;
-    refs.openModalCardBtn.style.display = 'none';
-    console.log(isModalOpen, 'INSIDE');
   }
 }
 
@@ -48,14 +42,12 @@ function closeModalCard() {
 }
 
 function toggleModal() {
-  const modalBackdrop = document.getElementById('data-modal-card');
-  modalBackdrop.classList.toggle('is-hidden');
+  refs.modalCardWrapper.classList.toggle('is-hidden');
 }
 
 function clearModalContent() {
-  const modalCard = document.querySelector('.modal-card');
-  if (modalCard) {
-    modalCard.innerHTML = '';
+  if (refs.modalCardWrapper) {
+    refs.modalCardWrapper.innerHTML = '';
   }
 }
 
@@ -66,16 +58,19 @@ const renderBooks = (data, refs) => {
   const appleBooksLink = book.buy_links.find(
     link => link.name === 'Apple Books'
   );
+
   console.log({ book });
 
+
   const bookElMarkup = `
+  <div class="modal-card">
     <div class="modal-card-div">
       <img class="modal-card_img" src="${book.book_image}" alt="${book.title}" />
       <div class="modal-card-info">
         <h3 class="modal-card_title">${book.title}</h3>
         <p class="modal-card_author">${book.author}</p>
         <p class="modal-card_desq">${book.description}</p>
-        <ul class="shopping-list-links"> 
+        <ul class="shopping-list-links">
           <li shopping-list-links_item>
             <a class="shopping-list-links_icon" href="${amazonLink.url}">
               <picture>
@@ -112,18 +107,79 @@ const renderBooks = (data, refs) => {
         </ul>
       </div>
     </div>
-    <button class="modal-card_close" type="button">
-    <svg class="icon-cross" height="12" width="12">
-      <use href="${sprite}#icon-close"></use>
-    </svg>
-  </button>
-    <div class="button-shopping">
-      <button class="button-add-shopping-list btn-modal-card" type="button">Add to Shopping List</button> 
+      <button class="modal-card_close" type="button">
+        <svg class="icon-cross" height="12" width="12">
+          <use href="${sprite}#icon-close"></use>
+        </svg>
+      </button>
+      <div class="button-shopping">
+        <button class="button-add-shopping-list btn-modal-card" type="button">Add to Shopping List</button>
+      </div>
     </div>
   `;
 
-  refs.modalCard.insertAdjacentHTML('beforeend', bookElMarkup);
+  refs.modalCardWrapper.insertAdjacentHTML('beforeend', bookElMarkup);
+
+  // refs.modalCard.insertAdjacentHTML('beforeend', bookElMarkup);
+////
+  const addToShoppingListBtn = document.querySelector('.button-add-shopping-list');
+  addToShoppingListBtn.addEventListener('click', () => addToShoppingList(book));
+////
+  const modalCardClose = document.querySelector('.modal-card_close');
+  modalCardClose.addEventListener('click', closeModalCard);
+  console.log({ modalCardClose });
 };
+
+function addToShoppingList(book) {
+  // Отримати поточні дані з localStorage
+  const shoppingList = JSON.parse(localStorage.getItem('shoppingList')) || [];
+
+  /////////
+
+  const isBookInList = shoppingList.some(item => item.id === book.id);
+
+  if (isBookInList) {
+    // Видалити книгу зі списку покупок
+    const updatedList = shoppingList.filter(item => item.id !== book.id);
+    localStorage.setItem('shoppingList', JSON.stringify(updatedList));
+
+    // Змінити текст кнопки на "Add to Shopping List"
+    const addToShoppingListBtn = document.querySelector('.button-add-shopping-list');
+    addToShoppingListBtn.textContent = 'Add to Shopping List';
+
+    // Видалити повідомлення про додавання до списку покупок
+    const message = document.querySelector('.shopping-list-message');
+    if (message) {
+      message.remove();
+    }
+
+    return;
+  }
+
+  ///////
+
+  // Додати книгу до списку покупок
+  shoppingList.push(book);
+
+  // Зберегти оновлений список покупок в localStorage
+  localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
+
+  // Змінити текст кнопки на "Remove from the shopping list"
+  const addToShoppingListBtn = document.querySelector('.button-add-shopping-list');
+  addToShoppingListBtn.textContent = 'Remove from the shopping list';
+
+   // Відобразити повідомлення про додавання до списку покупок
+   const message = document.createElement('p');
+   message.classList.add('shopping-list-message');
+   message.textContent =
+     'Congratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
+
+     const buttonShopping = document.querySelector('.button-shopping');
+  buttonShopping.appendChild(message);
+  // Відобразити підтвердження додавання до списку покупок
+  alert('Book added to Shopping List!');
+}
+
 
 document.addEventListener('keydown', function (event) {
   if (event.key === 'Escape' && isModalOpen) {
@@ -131,6 +187,10 @@ document.addEventListener('keydown', function (event) {
   }
 });
 
+
+
+
+/////////////////////////////////////////
 //best-selling-books
 
 //vika
@@ -157,3 +217,4 @@ document.addEventListener('keydown', function (event) {
 //vika
 
 ///////////////
+
