@@ -24,7 +24,22 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-const headerSignButton = document.querySelectorAll('#all-registration-btns');
+
+const shoppingListButton = document.getElementById('shoppingListButton');
+const userButton = document.getElementById('userInAuth');
+const logOutButton = document.getElementById('logOutAuth');
+const headerSignButton = document.getElementById('signUpAuth');
+const homeButton = document.getElementById('homeButton');
+
+const shoppingListButtonMobile = document.getElementById(
+  'shoppingListButtonMobile'
+);
+const userButtonMobile = document.getElementById('userInAuthMobile');
+const logOutButtonMobile = document.getElementById('logOutAuthMobile');
+const headerSignButtonMobile = document.getElementById('signUpAuthMobile');
+const homeButtonMobile = document.getElementById('homeButtonMobile');
+
+
 const modal = document.getElementById('modal-auth');
 const close = document.getElementById('close');
 const signinTab = document.getElementById('signin-tab');
@@ -33,34 +48,83 @@ const signinContent = document.getElementById('signin-content');
 const signupContent = document.getElementById('signup-content');
 const signinButton = document.getElementById('signin-button');
 const signupButton = document.getElementById('signup-button');
-const userButton = document.getElementById('user-auth');
-const logOutButton = document.getElementById('logaut-auth');
+
 
 document.addEventListener('DOMContentLoaded', () => {
   onAuthStateChanged(auth, user => {
+    if (window.matchMedia('(min-width: 767px)').matches) {
+      if (user) {
+        userButton.style.display = 'flex';
+        logOutButton.style.display = 'flex';
+        shoppingListButton.style.display = 'flex';
+        homeButton.style.display = 'flex';
+        headerSignButton.style.display = 'none';
+        userButton.textContent = user.displayName;
+      } else {
+        userButton.style.display = 'none';
+        logOutButton.style.display = 'none';
+        shoppingListButton.style.display = 'none';
+        homeButton.style.display = 'none';
+        headerSignButton.style.display = 'flex';
+      }
+    } else {
+      shoppingListButton.style.display = 'none';
+      homeButton.style.display = 'none';
+      headerSignButton.style.display = 'none';
+      logOutButton.style.display = 'none';
+      if (user) {
+        userButtonMobile.style.display = 'flex';
+        logOutButtonMobile.style.display = 'flex';
+        shoppingListButtonMobile.style.display = 'flex';
+        homeButtonMobile.style.display = 'flex';
+        headerSignButtonMobile.style.display = 'none';
+        userButtonMobile.textContent = user.displayName;
+      } else {
+        userButtonMobile.style.display = 'none';
+        logOutButtonMobile.style.display = 'none';
+        shoppingListButtonMobile.style.display = 'none';
+        homeButtonMobile.style.display = 'none';
+        headerSignButtonMobile.style.display = 'flex';
+      }
+    }
+  });
+});
+export function checkAuthState() {
+  const user = auth.currentUser;
+  if (window.matchMedia("(min-width: 767px)").matches) {
     if (user) {
-      userButton.style.display = 'block';
-      logOutButton.style.display = 'block';
+      userButton.style.display = 'flex';
+      logOutButton.style.display = 'flex';
+      shoppingListButton.style.display = 'flex';
+      homeButton.style.display = 'flex';
       headerSignButton.style.display = 'none';
       userButton.textContent = user.displayName;
     } else {
       userButton.style.display = 'none';
       logOutButton.style.display = 'none';
-      headerSignButton.style.display = 'block';
+      shoppingListButton.style.display = 'none';
+      homeButton.style.display = 'none';
+      headerSignButton.style.display = 'flex';
     }
-  });
-});
-function checkAuthState() {
-  const user = auth.currentUser;
-  if (user) {
-    userButton.style.display = 'block';
-    logOutButton.style.display = 'block';
-    headerSignButton.style.display = 'none';
-    userButton.textContent = user.displayName;
   } else {
-    userButton.style.display = 'none';
+    shoppingListButton.style.display = 'none';
+    homeButton.style.display = 'none';
+    headerSignButton.style.display = 'none';
     logOutButton.style.display = 'none';
-    headerSignButton.style.display = 'block';
+    if (user) {
+      userButtonMobile.style.display = 'flex';
+      logOutButtonMobile.style.display = 'flex';
+      shoppingListButtonMobile.style.display = 'flex';
+      homeButtonMobile.style.display = 'flex';
+      headerSignButtonMobile.style.display = 'none';
+      userButtonMobile.textContent = user.displayName;
+    } else {
+      userButtonMobile.style.display = 'none';
+      logOutButtonMobile.style.display = 'none';
+      shoppingListButtonMobile.style.display = 'none';
+      homeButtonMobile.style.display = 'none';
+      headerSignButtonMobile.style.display = 'flex';
+    }
   }
 }
 function closeModal() {
@@ -72,10 +136,6 @@ function closeModal() {
 }
 function successfulLogin() {
   modal.style.display = 'none';
-  userButton.style.display = 'block';
-  userButton.textContent = user.displayName;
-  logOutButton.style.display = 'block';
-  checkAuthState();
 }
 function signIn() {
   const email = document.getElementById('email').value;
@@ -123,7 +183,7 @@ function signUp() {
               const user = userCredential.user;
               console.log('Successful user registration:', user);
               Notify.success('Successful registration!');
-              modal.style.display = 'none';
+              closeModal();
 
               return updateProfile(auth.currentUser, {
                 displayName: name,
@@ -183,11 +243,18 @@ close.addEventListener('click', () => {
   closeModal();
   checkAuthState();
 });
+headerSignButtonMobile.addEventListener('click', () => {
+  modal.style.display = 'block';
+  signupContent.classList.add('show');
+  signupTab.classList.add('is-active');
+});
 headerSignButton.addEventListener('click', () => {
   modal.style.display = 'block';
   signupContent.classList.add('show');
   signupTab.classList.add('is-active');
-  headerSignButton.style.display = 'none';
+});
+logOutButtonMobile.addEventListener('click', () => {
+  logOut();
 });
 logOutButton.addEventListener('click', () => {
   logOut();
