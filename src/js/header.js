@@ -4,4 +4,4 @@ function onClick(e) {
   menu.classList.toggle('active');
 }
 
-export { header };
+export { onClick };

@@ -10,9 +10,6 @@ import { modalCard } from './js/modal-card';
 import { fetchCategories } from './js/categories-list-list';
 fetchCategories();
 
-supportUkraine();
-header();
-
 fetchBestSellers()
   .then(data =>
     bestSellersGal.insertAdjacentHTML(
