@@ -10,3 +10,4 @@ import './js/open-menu';
 import './js/support-list';
 import './js/support-ukraine';
 import './js/shopping-list/shopping-list';
+import './js/jumpUpBtn';
