@@ -6,8 +6,8 @@ window.onscroll = function () {
 
 function scrollFunction() {
   if (
-    document.body.scrollTop > 700 ||
-    document.documentElement.scrollTop > 700
+    document.body.scrollTop > 1000 ||
+    document.documentElement.scrollTop > 1000
   ) {
     document.getElementById('jumpUpBtn').style.display = '';
   } else {
@@ -15,8 +15,7 @@ function scrollFunction() {
   }
 }
 
-// When the user clicks on the button, scroll to the top of the document
 export function jumpUpBtn() {
-  document.body.scrollTop = 0; // For Safari
-  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+  document.body.scrollTo({ top: 0, behavior: 'smooth' });
+  document.documentElement.scrollTo({ top: 0, behavior: 'smooth' });
 }
