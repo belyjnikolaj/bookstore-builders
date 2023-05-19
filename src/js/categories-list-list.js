@@ -9,7 +9,7 @@ async function fetchCategories() {
       await displayBooksByCategory(selectedCategory);
     }
     addEventListeners();
-    truncateBookTitle();
+    
   } catch (error) {
     console.log(error.message);
   }
@@ -183,8 +183,4 @@ function setSelectedCategoryOnReload() {
 }
 fetchCategories();
 export { fetchCategories, createMarkupBooks, displayBooksByCategory };
-
-
-
-
 

@@ -180,7 +180,7 @@ renderShoppingList();
 // }
 
 // displayShoppingList()
-import '..//dark.js';
+import '../dark.js';
 import '../support-ukraine.js';
 import '../modal-card.js';
 

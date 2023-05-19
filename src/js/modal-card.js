@@ -116,25 +116,16 @@ const renderBooks = (data, refs) => {
     </div>
   `;
 
-  // <button class="button-remove-shopping-list btn-modal-card" type="button">Remove from the shopping list</button>
-
   refs.modalCardWrapper.insertAdjacentHTML('beforeend', bookElMarkup);
 
   const addToShoppingListBtn = document.querySelector('.button-add-shopping-list');
   addToShoppingListBtn.addEventListener('click', () => addToShoppingList(book));
 
 
-  // refs.modalCard.insertAdjacentHTML('beforeend', bookElMarkup);
-  ////
-
-  ////
-
   const modalCardClose = document.querySelector('.modal-card_close');
   modalCardClose.addEventListener('click', closeModalCard);
   console.log({ modalCardClose });
 };
-
-  ////////////////
 
 
 function removeFromShoppingList(bookId) {
@@ -143,8 +134,6 @@ function removeFromShoppingList(bookId) {
   renderShoppingList();
 }
 
-  ////////////////
-
 
 function addToShoppingList(book) {
 
@@ -152,11 +141,11 @@ function addToShoppingList(book) {
   // Отримати поточні дані з localStorage
   const shoppingList = JSON.parse(localStorage.getItem('shoppingList')) || [];
 
-  const isBookInList = shoppingList.some(item => item.id === book.id);
+  const isBookInList = shoppingList.some(item => item._id === book._id);
 
   if (isBookInList) {
     // Видалити книгу зі списку покупок
-    const updatedList = shoppingList.filter(item => item.id !== book.id);
+    const updatedList = shoppingList.filter(item => item._id !== book._id);
     localStorage.setItem('shoppingList', JSON.stringify(updatedList));
 
     // Змінити текст кнопки на "Add to Shopping List"
@@ -180,15 +169,13 @@ function addToShoppingList(book) {
   // Зберегти оновлений список покупок в localStorage
   localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
 
-  ////////////////
 
   const deleteBtns = document.querySelectorAll('.card-shopping__deleteBtn');
 deleteBtns.forEach((btn, index) => {
   btn.addEventListener('click', () => {
-    removeFromShoppingList(shoppingList[index].id);
+    removeFromShoppingList(shoppingList[index]._id);
   });
 });
-  ////////////////
 
 
   // Змінити текст кнопки на "Remove from the shopping list"
