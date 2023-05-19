@@ -127,7 +127,11 @@ width: 335px;
 }
 
 @media screen and (min-width: $tablet) {
-  
+    .books_hero_title {
+       font-size: 48px;
+            
+    }
+
     .info-author__item--main-page {
         padding-bottom: 20px;
     }
@@ -153,7 +157,6 @@ width: 335px;
 }
 
 @media screen and (min-width: $desktop) {
-   
     .info-author__item--main-page {
         padding-bottom: 32px;
     }
