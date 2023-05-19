@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.matchMedia('(min-width: 767px)').matches) {
       if (user) {
         userButton.style.display = 'flex';
-        shoppingListButton.style.display = 'block';
+        shoppingListButton.style.display = 'flex';
         homeButton.style.display = 'block';
         headerSignButton.style.display = 'none';
         userButton.textContent = user.displayName;
@@ -96,7 +96,7 @@ export function checkAuthState() {
   if (window.matchMedia("(min-width: 767px)").matches) {
     if (user) {
       userButton.style.display = 'flex';
-      shoppingListButton.style.display = 'block';
+      shoppingListButton.style.display = 'flex';
       homeButton.style.display = 'block';
       headerSignButton.style.display = 'none';
       userButton.textContent = user.displayName;
