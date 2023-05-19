@@ -4,15 +4,14 @@ import { supportUkraine } from '../support-ukraine';
 
 import sprite from '../../images/sprite.svg';
 
-import amazonIcone from '../../images/shopping-list/amazon-icon.png'
-import amazonXIcone from '../../images/shopping-list/amazon-icon@2x.png'
-import appleIcone from '../../images/shopping-list/apple-icon.png'
-import appleXIcone from '../../images/shopping-list/apple-icon@2x.png'
-import bookshopIcone from '../../images/shopping-list/bookshop-icon.png'
-import bookshopXIcone from '../../images/shopping-list/bookshop-icon@2x.png'
+import amazonIcone from '../../images/shopping-list/amazon-icon.png';
+import amazonXIcone from '../../images/shopping-list/amazon-icon@2x.png';
+import appleIcone from '../../images/shopping-list/apple-icon.png';
+import appleXIcone from '../../images/shopping-list/apple-icon@2x.png';
+import bookshopIcone from '../../images/shopping-list/bookshop-icon.png';
+import bookshopXIcone from '../../images/shopping-list/bookshop-icon@2x.png';
 
 // async function fetchBook() { 
-
 //   const id = '643282b1e85766588626a080'; 
 //   const resp = await axios.get(`https://books-backend.p.goit.global/books/${id}`).then(response => response.data); 
 //    return resp; 
@@ -110,5 +109,4 @@ import bookshopXIcone from '../../images/shopping-list/bookshop-icon@2x.png'
 // }
 
 // displayShoppingList()
-
 
