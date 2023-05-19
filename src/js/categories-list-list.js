@@ -79,6 +79,7 @@ function createMarkupCategories(arr) {
 }
 
 function createMarkupBooks(arr) {
+  console.log(arr)
   return (
     `<div class="books-container">` + // Add container div
     arr
@@ -101,6 +102,18 @@ function createMarkupBooks(arr) {
     `</div>`
   ); // Close container div
 }
+
+function addClickShowModal() {
+  const bookCards = document.querySelectorAll('.conteiner__books .books');
+  bookCards.forEach(card => {
+    const id = card.querySelector('.visually-hidden').textContent;
+    card.addEventListener('click', () => {
+      openModalCard(id);
+      document.getElementById('data-modal-card').classList.remove('is-hidden');
+    });
+  });
+}
+
 
 function highlightLastWord(str) {
   const words = str.split(' ');
@@ -139,6 +152,7 @@ function displayCategories(categories) {
   );
 
   const allCategories = document.querySelector('.js-all-categories');
+  console.log
   allCategories.classList.add('active'); // Додаємо клас 'active' до "All categories"
 
   allCategories.addEventListener('click', async () => {
@@ -201,6 +215,6 @@ function setSelectedCategoryOnReload() {
 
 
 fetchCategories();
-
+addClickShowModal();
 export { fetchCategories, createMarkupBooks, displayBooksByCategory };
 

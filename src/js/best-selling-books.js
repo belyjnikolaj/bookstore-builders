@@ -37,7 +37,7 @@ fetchBestSellers()
   .then(data => {
     viewPort();
     bestSellersGal.insertAdjacentHTML('beforeend', createMarkupBooksCategories(data))
-     addClickListeners();
+    addClickShowModal();
   },
     err => {
       console.log(err)
@@ -45,6 +45,7 @@ fetchBestSellers()
           'Sorry, there are no books matching your search query.'
   );});
 function createMarkupBooksCategories(arr) {
+  console.log(createMarkupBooksCategories)
   return arr.map(({ list_name, books }) =>
   `<div class="books_list_category">
         <p class="category_name">${list_name}</p>
@@ -69,7 +70,7 @@ function createMarkupBooksCategories(arr) {
 }
 
 
-function addClickListeners() {
+function addClickShowModal() {
   const bookCards = document.querySelectorAll('.js-best-sellers .modal_popap');
   bookCards.forEach(card => {
     const id = card.querySelector('.visually-hidden').textContent;
@@ -100,7 +101,7 @@ function handleCategoryBtnClick(evt) {
       displayBooksByCategory(newGalName);
       displayBooksAndHighlightLastWord(data, newGalName);
      booksElement.insertAdjacentHTML('beforeend',createMarkupBooks(data))
-     addClickListeners();
+     addClickShowModal();
   },
     err => { console.log(err) });
 }
