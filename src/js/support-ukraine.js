@@ -13,7 +13,6 @@ const supportUkraine = supportList
                 </div>`;
   })
   .join(' ');
-console.log(supportUkraine);
 list.insertAdjacentHTML('beforeend', supportUkraine);
 
 const swiper = new Swiper('.swiper-container', {
