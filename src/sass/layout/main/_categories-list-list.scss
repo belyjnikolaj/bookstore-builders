@@ -1,15 +1,11 @@
 .home__page-container {
-border: 1.5px solid #111;
-padding-top: 40px;
-width: 100%;
-  // @media screen and (min-width: $mobile) {
-  //     width: $mobile;
-  //   }
-
+  padding-top: 40px;
+  padding-bottom: 80px;
+  width: 100%;
+  
   @media screen and (min-width: $tablet) {
-
-
     width: $tablet;
+    padding-bottom: 100px;
   }
 
   @media screen and (min-width: $desktop) {
@@ -18,83 +14,77 @@ width: 100%;
     width: 100%;
 
     width: $desktop;
-    
   }
 }
-
-.sidebar-container {
-  width: 335px;
-  height: 228px;
-  width: 100%;
-
+.sidebar {
   @media screen and (min-width: $tablet) {
-    padding: 0 32px;
     display: flex;
-    justify-content: center;
     gap: 32px;
-    width: 337px;
-    height: 472px;
-    width: 100%;
   }
 
   @media screen and (min-width: $desktop) {
     display: block;
-    flex-direction: column;
-    width: 356px;
-    height: 472px;
   }
+}
+.sidebar-container {
+  width: 335px;
+  height: 620px;
+  width: 100%;
   /* полоса прокрутки (скроллбар) */
   ::-webkit-scrollbar {
     width: 8px;
     height: 167px;
-    background-color: #F6F6F6;
+    background-color: #f6f6f6;
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: #E0E0E0;
+    background-color: #e0e0e0;
     border-radius: 9em;
-    box-shadow: inset 1px 1px 10px #f3faf7;
   }
 
   ::-webkit-scrollbar-thumb:hover {
     background-color: inherit;
   }
+  @media screen and (min-width: $tablet) {
+    // padding: 0 32px;
+    display: flex;
+    gap: 32px;
+    height: 472px;
+  }
 
-  
+  @media screen and (min-width: $desktop) {
+    display: block;
+    flex-direction: column;
+    padding: 0;
+    width: 356px;
+    height: 472px;
+  }
 }
 
 .categories {
   overflow-y: scroll;
   width: 335px;
   height: 228px;
-  
-  @media screen and (min-width: $mobile) {
-    //     width: $mobile;
-  }
 
   @media screen and (min-width: $tablet) {
     width: 337px;
     height: 472px;
-
   }
 
   @media screen and (min-width: $desktop) {
     width: 356px;
     height: 472px;
 
-    // scroll-snap-type: y proximity;
   }
 }
 .categories__support {
- padding-top: 40px;
-@media screen and (min-width: $tablet) {
+  padding-top: 40px;
+  @media screen and (min-width: $tablet) {
     padding-top: 0;
-      
   }
 
   @media screen and (min-width: $desktop) {
     padding-top: 86px;
-
   }
 }
 
@@ -106,58 +96,59 @@ width: 100%;
   letter-spacing: -0.02em;
   color: $categories-text-light;
   cursor: pointer;
-
 }
 
 .list_name:hover {
   font-weight: 700;
   color: $accent-text-light;
-  text-transform: uppercase
+  text-transform: uppercase;
 }
 
 .list_name:focus {
   font-weight: 700;
   color: $accent-text-light;
-  text-transform: uppercase
+  text-transform: uppercase;
 }
 
-/* .text {} */
 .conteiner__books {
-  width: 100%; 
-  padding-left: 40px;
+  width: 100%;
+  padding-top: 40px;
+  
   @media screen and (min-width: $tablet) {
+    padding-top: 100px;
     padding-left: 0;
-
   }
 
   @media screen and (min-width: $desktop) {
-    
-
+    padding-top: 0;
+    padding-left: 33px;
   }
 }
 .conteiner__books-box {
   width: 100%;
-  
 
   @media screen and (min-width: $tablet) {
-      padding-top: 100px;
-  
-    }
-  
-    @media screen and (min-width: $desktop) {
-      padding-top: 0;
-  
-    }
-  
+    padding-top: 0;
+  }
+
+  @media screen and (min-width: $desktop) {
+    // padding-top: 0;
+  }
 }
 
 .name__categore {
   font-weight: 700;
-  font-size: 48px;
-  line-height: 1.08;
+  font-size: 32px;
+  line-height: 1.1875;
   letter-spacing: -0.04em;
-
-  color: primary-text-light;
+  color: $primary-text-light;
+  margin: 0;
+  @media screen and (min-width: $tablet) {
+    font-size: 48px;
+    line-height: 1.08;
+  }
+  @media screen and (min-width: $desktop) {
+  }
 }
 
 .books {
@@ -170,27 +161,23 @@ width: 100%;
   gap: 15px;
   // margin-left: auto;
   // margin-right: auto;
+  padding-top: 40px;
 }
 .books-container {
   display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-     // padding: 15px 15px;
-    gap: 15px;
-    @media screen and (min-width: $tablet) {
-        display: flex;
-          // justify-content: center;
-          flex-wrap: wrap;
-          // padding: 15px 15px;
-          gap: 25px;
-    
-      }
-    
-      @media screen and (min-width: $desktop) {
-      
-    
-        // scroll-snap-type: y proximity;
-      }
+  justify-content: center;
+  flex-wrap: wrap;
+  
+  gap: 15px;
+  @media screen and (min-width: $tablet) {
+    display: flex;
+   flex-wrap: wrap;
+   gap: 25px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    // scroll-snap-type: y proximity;
+  }
 }
 
 .book-card {
@@ -202,25 +189,31 @@ width: 100%;
   width: 335px;
   height: 571px;
 
-  
-  
-    @media screen and (min-width: $tablet) {
-      width: 218px;
-      height: 366px;
-  
-    }
-  
-    @media screen and (min-width: $desktop) {
-      width: 180px;
-      height: 306px;
-  
-      // scroll-snap-type: y proximity;
-    }
+  @media screen and (min-width: $tablet) {
+    width: 218px;
+    height: 366px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    width: 180px;
+    height: 306px;
+
+    // scroll-snap-type: y proximity;
+  }
 }
 
 .book-card__img-box {
   width: 100%;
-  height: 256px;
+  height: 485px;
+  @media screen and (min-width: $tablet) {
+        height: 316px;
+    }
+  
+    @media screen and (min-width: $desktop) {
+      height: 256px;
+  
+      // scroll-snap-type: y proximity;
+    }
 }
 
 .book-card__img {

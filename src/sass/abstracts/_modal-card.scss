@@ -23,8 +23,8 @@
   margin: 0 auto;
   padding: 24px 40px;
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  position: absolute;
-  top: 0;
+  position: fixed;
+  top: 28%;
   left: 50%;
   transform: translateX(-50%) scale(1);
   background-color: $header-bgc-light;
@@ -32,12 +32,12 @@
   border-radius: 18px;
 
   @media screen and (min-width: $tablet) {
-    top: 50%;
+    top: 56%;
     transform: translate(-50%, -50%) scale(1);
     max-width: 579px;
     padding: 40px;
     display: block;
-    height: 465px;
+    max-height: 501px;
   }
 
   @media screen and (min-width: $desktop) {
@@ -174,7 +174,7 @@
   margin: auto;
   display: block;
   min-width: 211px;
-  padding: 14px 28px;
+  padding: 14px 23px;
   background-color: $header-bgc-light;
   cursor: pointer;
 
@@ -202,22 +202,46 @@
   @media screen and (min-width: $tablet) {
     margin-top: 20px;
     margin-bottom: 0px;
-
   }
 
   @media screen and (min-width: $desktop) {
     margin-top: 20px;
     margin-bottom: 0px;
-
   }
 }
 
-.shopping-list-links_icon:hover {
-  box-shadow: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.15)) ;
-  mix-blend-mode: luminosity ;
+.shopping-list-links_icon:hover,
+.shopping-list-links_icon:focus {
+  box-shadow: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.15));
+  mix-blend-mode: luminosity;
 }
 
-// .shopping-list-links_item:hover {
-//   box-shadow: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.15)) ;
-//     mix-blend-mode: luminosity ;
-// }
+
+
+.shopping-list-message {
+
+  margin-top: 8px;
+  margin-left: auto;
+  margin-right: auto;
+
+  font-family: 'DM Sans';
+
+font-weight: 400;
+font-size: 10px;
+line-height: 1.2;
+
+text-align: center;
+
+color: rgba(17, 17, 17, 0.5);
+
+@media screen and (min-width: $tablet) {
+  width: 324px;
+  letter-spacing: -0.04em;
+  font-size: 12px;
+  line-height: 1.1666;
+
+  width: 324px;
+
+}
+}
+

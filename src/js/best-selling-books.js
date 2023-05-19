@@ -7,6 +7,18 @@ const bestSellersGal = document.querySelector('.js-best-sellers');
 const categories = document.querySelector('.categories');
 let width = window.innerWidth;
 let booksPerList = 1;
+
+addEventListener('resize', () => {
+  if (
+    (window.innerWidth > 767 && width < 768) ||
+    (window.innerWidth > 1439 && width< 1440) ||
+    (window.innerWidth < 1440 && width > 1439) ||
+    (window.innerWidth < 768 && width > 767)
+  ) {
+    location.reload();
+  }
+});
+
 function viewPort() {
   if (width <= 768) {
     booksPerList = 1;
@@ -16,13 +28,14 @@ function viewPort() {
     booksPerList = 5;
   }
 }
-viewPort();
+
 async function fetchBestSellers() {
   const resp = await axios.get(`https://books-backend.p.goit.global/books/top-books`).then(response => response.data);
   return resp;
 }
 fetchBestSellers()
   .then(data => {
+    viewPort();
     bestSellersGal.insertAdjacentHTML('beforeend', createMarkupBooksCategories(data))
      addClickListeners();
   },
@@ -38,34 +51,24 @@ function createMarkupBooksCategories(arr) {
         <ul class="books_row">${books.slice(0, booksPerList).map(({ book_image, title, author, _id, }) =>
          ` <div>
              <a href="#" class="modal_popap" target="_self">
-               <div class="book-card__img-box--main-page">
-                 <img class="book-card__img--main-page"src="${book_image}" alt="" loading="lazy />
-               </div>
-               <div>
-                  <p class="info-title__item--main-page " id="title" class="cut-text">${title}</p>
+          <div class="book-card--main-page">
+              <div class="book-card__img-box--main-page">
+                <img class="book-card__img--main-page"src="${book_image}" alt="${title}" loading="lazy"/>
+              </div> 
+              <div class="info--main-page">
+                  <h3 class="info-title__item--main-page cut-text">${title}</h3>
                   <p class="info-author__item--main-page">${author}</p>
-                  <p class = "visually-hidden">${_id}</p>
-               </div>
-                  </a>
+                   <p class="visually-hidden">${_id}</p>             
+              </div>
+          </div>
+      </a>
             </div>`).join('')}</ul><button class="books-category-btn" data-list="${list_name}">see more</button>
       </div>
     `
   ).join('');
 }
 
-// function addClickListeners() {
-//   const bookCards = document.querySelectorAll('.js-best-sellers');
-//   bookCards.forEach(card => {
-//     const id = card.querySelector('.visually-hidden').textContent;
-//     addToShopList(evt);
-//     card.addEventListener('click', () => {
-//       openModalCard(id);
-//       document.getElementById('data-modal-card').classList.remove('is-hidden');
-//     });
-//   });
-// }
 
-// vika MAY 17
 function addClickListeners() {
   const bookCards = document.querySelectorAll('.js-best-sellers .modal_popap');
   bookCards.forEach(card => {
@@ -76,7 +79,6 @@ function addClickListeners() {
     });
   });
 }
-// vika MAY 17
 
 
 // РОЗРОЗБКА КНОПКИ----------------------------------
@@ -103,4 +105,3 @@ function handleCategoryBtnClick(evt) {
     err => { console.log(err) });
 }
 export { fetchBestSellers };
-

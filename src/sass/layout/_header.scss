@@ -47,6 +47,7 @@
   padding: 20px 20px;
   position: relative;
   z-index: 100;
+  max-width: $tablet;
 }
 .menu-conteiner-account {
   display: none;
@@ -115,6 +116,7 @@ input:checked + .slider:before {
 }
 
 .logo-name {
+  margin-left: 8px;
   margin-right: 144px;
 }
 .header-wrap {
@@ -181,11 +183,13 @@ input:checked + .slider:before {
 }
 
 @media screen and (max-width: 767px) {
+
   .logo-name {
     display: block;
     margin-left: 8px;
     margin-right: auto;
   }
+
   .logOutAuthMobile {
     display: flex;
     align-items: center;
@@ -203,6 +207,7 @@ input:checked + .slider:before {
     justify-content: center;
     color: $primary-bgc-light;
   }
+
   .shoppingListButtonMobile-list {
     display: flex;
     align-items: center;
@@ -237,6 +242,7 @@ input:checked + .slider:before {
   .homeButtonMobile {
     margin-bottom: 16px;
   }
+
 
   .shoppingListButtonMobile__icon {
     height: 20px;
@@ -362,6 +368,7 @@ input:checked + .slider:before {
     display: none;
   }
   .header-conteiner {
+    max-width: $desktop;
     padding: 14px 32px;
   }
   .nav-list {
@@ -487,6 +494,7 @@ input:checked + .slider:before {
 @media screen and(min-width: $desktop) {
   .header-conteiner {
     padding: 14px 24px;
+    max-width: $desktop;
   }
   .navigation {
     margin-right: auto; //746px is-open conteiner
