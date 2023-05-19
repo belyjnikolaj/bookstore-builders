@@ -32,5 +32,3 @@ activeShopingPage.addEventListener('click', () => {
   activeShopingPage.classList.add('link-active');
   activeHomePage.classList.remove('link-active');
 });
-
-

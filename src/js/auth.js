@@ -20,6 +20,8 @@ import {
 } from 'firebase/auth';
 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
+
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -31,9 +33,7 @@ const logOutButton = document.getElementById('logOutAuth');
 const headerSignButton = document.getElementById('signUpAuth');
 const homeButton = document.getElementById('homeButton');
 
-const shoppingListButtonMobile = document.getElementById(
-  'shoppingListButtonMobile'
-);
+const shoppingListButtonMobile = document.getElementById('shoppingListButtonMobile');
 const userButtonMobile = document.getElementById('userInAuthMobile');
 const logOutButtonMobile = document.getElementById('logOutAuthMobile');
 const headerSignButtonMobile = document.getElementById('signUpAuthMobile');
@@ -49,15 +49,13 @@ const signupContent = document.getElementById('signup-content');
 const signinButton = document.getElementById('signin-button');
 const signupButton = document.getElementById('signup-button');
 
-
 document.addEventListener('DOMContentLoaded', () => {
-  onAuthStateChanged(auth, user => {
+  onAuthStateChanged(auth, user => { 
     if (window.matchMedia('(min-width: 767px)').matches) {
       if (user) {
         userButton.style.display = 'flex';
-        logOutButton.style.display = 'flex';
-        shoppingListButton.style.display = 'flex';
-        homeButton.style.display = 'flex';
+        shoppingListButton.style.display = 'block';
+        homeButton.style.display = 'block';
         headerSignButton.style.display = 'none';
         userButton.textContent = user.displayName;
       } else {
@@ -89,14 +87,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
 export function checkAuthState() {
+   Loading.standard('Loading...', {
+     backgroundColor: 'rgba(10,10,10,10)',
+   });
   const user = auth.currentUser;
   if (window.matchMedia("(min-width: 767px)").matches) {
     if (user) {
       userButton.style.display = 'flex';
-      logOutButton.style.display = 'flex';
-      shoppingListButton.style.display = 'flex';
-      homeButton.style.display = 'flex';
+      shoppingListButton.style.display = 'block';
+      homeButton.style.display = 'block';
       headerSignButton.style.display = 'none';
       userButton.textContent = user.displayName;
     } else {
@@ -126,16 +127,17 @@ export function checkAuthState() {
       headerSignButtonMobile.style.display = 'flex';
     }
   }
+   Loading.remove();
 }
+
+document.addEventListener('DOMContentLoaded', checkAuthState())
+
 function closeModal() {
   modal.style.display = 'none';
   signinContent.classList.remove('show');
   signinTab.classList.remove('is-active');
   signupTab.classList.add('is-active');
   checkAuthState();
-}
-function successfulLogin() {
-  modal.style.display = 'none';
 }
 function signIn() {
   const email = document.getElementById('email').value;
@@ -147,7 +149,7 @@ function signIn() {
       const user = userCredential.user;
       console.log('Successful user login:', user);
       Notify.success('Successful login!');
-      successfulLogin();
+      closeModal();
       checkAuthState();
     })
     .catch(error => {
@@ -276,4 +278,11 @@ signinButton.addEventListener('click', () => {
 });
 signupButton.addEventListener('click', () => {
   signUp();
+});
+userButton.addEventListener('click', () => {
+  if (logOutButton.style.display !== 'flex') {
+    logOutButton.style.display = 'flex';
+  } else {
+    logOutButton.style.display = 'none';
+  }
 });
