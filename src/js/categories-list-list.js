@@ -179,9 +179,25 @@ function addEventListeners() {
       }
     }
   });
+
+  setSelectedCategoryOnReload(); // Викликаємо функцію після завантаження сторінки
 }
 
+function setSelectedCategoryOnReload() {
+  const selectedCategory = localStorage.getItem('selectedCategory');
+  if (selectedCategory) {
+    const categoryItems = document.querySelectorAll('.list_name');
+    categoryItems.forEach(item => {
+      if (item.textContent === selectedCategory) {
+        item.classList.add('selected');
+      } else {
+        item.classList.remove('selected');
+      }
+    });
+  }
+}
 
 fetchCategories();
 
 export { fetchCategories, createMarkupBooks, displayBooksByCategory };
+
