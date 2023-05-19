@@ -14,6 +14,15 @@
   background-color: $header-bgc-dark;
   border: 1.5px solid $primary-text-dark;
 }
+.dark .burger::after,
+.dark .burger::before,
+.dark .burger span,
+.dark .burger span:last-child {
+  background-color: #fff;
+}
+.dark .icon-close-menu__link {
+  fill: #fff;
+}
 
 // ---темний стиль для категорій книг
 .dark .sidebar-container {
@@ -133,4 +142,7 @@
   &__description {
     color: $primary-text-dark;
   }
+}
+.dark .shopping-list-message {
+  color: $categories-text-dark;
 }

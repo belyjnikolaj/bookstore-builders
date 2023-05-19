@@ -37,7 +37,7 @@ fetchBestSellers()
   .then(data => {
     viewPort();
     bestSellersGal.insertAdjacentHTML('beforeend', createMarkupBooksCategories(data))
-     addClickListeners();
+    addClickShowModal();
   },
     err => {
       console.log(err)
@@ -69,7 +69,7 @@ function createMarkupBooksCategories(arr) {
 }
 
 
-function addClickListeners() {
+function addClickShowModal() {
   const bookCards = document.querySelectorAll('.js-best-sellers .modal_popap');
   bookCards.forEach(card => {
     const id = card.querySelector('.visually-hidden').textContent;
@@ -100,7 +100,7 @@ function handleCategoryBtnClick(evt) {
       displayBooksByCategory(newGalName);
       displayBooksAndHighlightLastWord(data, newGalName);
      booksElement.insertAdjacentHTML('beforeend',createMarkupBooks(data))
-     addClickListeners();
+     addClickShowModal();
   },
     err => { console.log(err) });
 }

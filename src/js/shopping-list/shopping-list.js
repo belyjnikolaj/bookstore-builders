@@ -87,15 +87,14 @@ function renderShoppingList() {
 
 renderShoppingList();
 
-/////////////////////////////////////
+
 
 // async function fetchBook() { 
 //   const id = '643282b1e85766588626a080'; 
 //   const resp = await axios.get(`https://books-backend.p.goit.global/books/${id}`).then(response => response.data); 
 //    return resp; 
+
 // }
-
-
 
 // async function displayShoppingList() {
 //   const shoppingList = document.querySelector('.shopping-list');
@@ -108,10 +107,9 @@ renderShoppingList();
 //   }
 // }
 
-
 // function shoppingListMarkup(bookData) {
 //   const { book_image, title, list_name, description, author, amazon_product_url, buy_links: [amazon, apple, , , bookshop] } = bookData;
-  
+
 //   return `<li class="js-card card-shopping">
 //   <div class="card-shopping__container">
 //        <img src="${book_image}" alt="${title}" class="card-shopping__image" />
@@ -133,7 +131,7 @@ renderShoppingList();
 //                         type="image/png"
 //                       />
 //                       <img
-                     
+
 //                         class="amazon-icon"
 //                         src="${amazonIcone} "
 //                         alt="Amazon"
