@@ -45,7 +45,6 @@ fetchBestSellers()
           'Sorry, there are no books matching your search query.'
   );});
 function createMarkupBooksCategories(arr) {
-  console.log(createMarkupBooksCategories)
   return arr.map(({ list_name, books }) =>
   `<div class="books_list_category">
         <p class="category_name">${list_name}</p>
