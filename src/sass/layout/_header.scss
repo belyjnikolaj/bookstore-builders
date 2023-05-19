@@ -169,7 +169,7 @@ input:checked + .slider:before {
 }
 .log-out__btn {
   position: absolute;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: space-between;
   padding: 15px 14px;
@@ -445,9 +445,11 @@ input:checked + .slider:before {
     padding: 14px 32px;
   }
   .nav-list {
+    display: block;
     gap: 16px;
   }
   .nav-list__item {
+    display: block;
     margin-right: 24px;
   }
   .nav-shopping-page__icon {
@@ -461,9 +463,6 @@ input:checked + .slider:before {
   .navigation {
     margin-right: auto;
   }
-  .nav-home-page {
-    display: flex;
-  }
   .logo-name {
     margin-right: 40px;
   }
@@ -474,12 +473,6 @@ input:checked + .slider:before {
     display: none;
     align-items: center;
     gap: 8px;
-  }
-  .call-to-registration-btn {
-    display: flex;
-  }
-  .logged-in__btn {
-    display: flex;
   }
 
   .logged-in__btn span {
@@ -492,9 +485,6 @@ input:checked + .slider:before {
     display: none;
   }
 
-  .log-out__btn {
-    display: flex;
-  }
   .log-out__btn span {
     color: $primary-text-light;
     font-weight: 500;
@@ -513,6 +503,7 @@ input:checked + .slider:before {
     margin-right: auto; //746px is-open conteiner
   }
   .nav-list {
+    display: block;
     gap: 24px;
   }
   .logo-name {

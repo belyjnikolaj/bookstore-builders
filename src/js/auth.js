@@ -49,10 +49,46 @@ const signupContent = document.getElementById('signup-content');
 const signinButton = document.getElementById('signin-button');
 const signupButton = document.getElementById('signup-button');
 
-
+document.addEventListener('DOMContentLoaded', () => {
+  onAuthStateChanged(auth, user => { 
+    if (window.matchMedia('(min-width: 767px)').matches) {
+      if (user) {
+        userButton.style.display = 'flex';
+        shoppingListButton.style.display = 'block';
+        homeButton.style.display = 'block';
+        headerSignButton.style.display = 'none';
+        userButton.textContent = user.displayName;
+      } else {
+        userButton.style.display = 'none';
+        logOutButton.style.display = 'none';
+        shoppingListButton.style.display = 'none';
+        homeButton.style.display = 'none';
+        headerSignButton.style.display = 'flex';
+      }
+    } else {
+      shoppingListButton.style.display = 'none';
+      homeButton.style.display = 'none';
+      headerSignButton.style.display = 'none';
+      logOutButton.style.display = 'none';
+      if (user) {
+        userButtonMobile.style.display = 'flex';
+        logOutButtonMobile.style.display = 'flex';
+        shoppingListButtonMobile.style.display = 'flex';
+        homeButtonMobile.style.display = 'flex';
+        headerSignButtonMobile.style.display = 'none';
+        userButtonMobile.textContent = user.displayName;
+      } else {
+        userButtonMobile.style.display = 'none';
+        logOutButtonMobile.style.display = 'none';
+        shoppingListButtonMobile.style.display = 'none';
+        homeButtonMobile.style.display = 'none';
+        headerSignButtonMobile.style.display = 'flex';
+      }
+    }
+  });
+});
 
 export function checkAuthState() {
-
    Loading.standard('Loading...', {
      backgroundColor: 'rgba(10,10,10,10)',
    });
@@ -60,9 +96,8 @@ export function checkAuthState() {
   if (window.matchMedia("(min-width: 767px)").matches) {
     if (user) {
       userButton.style.display = 'flex';
-      logOutButton.style.display = 'flex';
-      shoppingListButton.style.display = 'flex';
-      homeButton.style.display = 'flex';
+      shoppingListButton.style.display = 'block';
+      homeButton.style.display = 'block';
       headerSignButton.style.display = 'none';
       userButton.textContent = user.displayName;
     } else {
@@ -95,7 +130,7 @@ export function checkAuthState() {
    Loading.remove();
 }
 
-document.addEventListener('DOMContentLoaded', checkAuthState)
+document.addEventListener('DOMContentLoaded', checkAuthState())
 
 function closeModal() {
   modal.style.display = 'none';
