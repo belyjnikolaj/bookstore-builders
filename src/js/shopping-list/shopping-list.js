@@ -1,7 +1,3 @@
-import '../dark.js';
-import '../support-ukraine.js';
-import '../modal-card.js';
-
 import axios from 'axios';
 
 import { supportUkraine } from '../support-ukraine';
@@ -14,15 +10,10 @@ import appleIcone from '../../images/shopping-list/apple-icon.png';
 import appleXIcone from '../../images/shopping-list/apple-icon@2x.png';
 import bookshopIcone from '../../images/shopping-list/bookshop-icon.png';
 import bookshopXIcone from '../../images/shopping-list/bookshop-icon@2x.png';
-import { openBurgerMenu, closeBurgerMenu } from '../open-menu';
 
 const shoppingList = JSON.parse(localStorage.getItem('shoppingList')) || [];
 const shoppingListContainer = document.querySelector('.shopping-list');
-const btnBurger = document.getElementById('js-open-menu-btn');
-const btnClose = document.getElementById('js-close-menu');
 
-btnBurger.addEventListener('click', openBurgerMenu);
-btnClose.addEventListener('click', closeBurgerMenu);
 
 function renderShoppingList() {
   shoppingListContainer.innerHTML = '';
@@ -187,4 +178,7 @@ renderShoppingList();
 // }
 
 // displayShoppingList()
+import '../dark.js';
+import '../support-ukraine.js';
+import '../modal-card.js';
 
