@@ -6,9 +6,6 @@ const btnClose = document.querySelector('.close-menu-btn');
 const activeShopingPage = document.querySelector('.nav-shopping-page');
 const activeHomePage = document.querySelector('.nav-home-page');
 
-const isLogged = true;
-// markup()
-
 export const openBurgerMenu = () => {
   checkAuthState;
   menuBurgerConteiner.classList.add('open-menu');
@@ -26,8 +23,6 @@ export const closeBurgerMenu = () => {
 btnBurger.addEventListener('click', openBurgerMenu);
 btnClose.addEventListener('click', closeBurgerMenu);
 
-const activeShopingPage = document.querySelector('.nav-shopping-page');
-
 activeHomePage.addEventListener('click', () => {
   activeHomePage.classList.add('link-active');
   activeShopingPage.classList.remove('link-active');
@@ -38,14 +33,4 @@ activeShopingPage.addEventListener('click', () => {
   activeHomePage.classList.remove('link-active');
 });
 
-activeShopingPageBurger.addEventListener('click', () => {
-  activeShopingPageBurger.classList.add('link-active');
-  activeHomePageBurger.classList.remove('link-active');
-  activeHomePage.classList.remove('link-active');
-});
-
-activeHomePageBurger.addEventListener('click', () => {
-  activeHomePageBurger.classList.add('link-active');
-  activeShopingPageBurger.classList.remove('link-active');
-});
 
