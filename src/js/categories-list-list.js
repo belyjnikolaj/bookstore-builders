@@ -10,7 +10,7 @@ async function fetchCategories() {
     }
 
     addEventListeners();
-    truncateBookTitle();
+    
   } catch (error) {
     console.log(error.message);
   }
