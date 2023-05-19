@@ -203,4 +203,3 @@ function setSelectedCategoryOnReload() {
 fetchCategories();
 
 export { fetchCategories, createMarkupBooks, displayBooksByCategory };
-
