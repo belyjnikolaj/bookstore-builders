@@ -27,8 +27,7 @@ btnBurger.addEventListener('click', openBurgerMenu);
 btnClose.addEventListener('click', closeBurgerMenu);
 
 const activeShopingPage = document.querySelector('.nav-shopping-page');
-const activeHomePage = document.querySelector('.nav-home-page');
-const activeShopingPageBurger = document.querySelector( '.shoppingListButtonMobile__link' );
+const activeShopingPageBurger = document.querySelector('.shoppingListButtonMobile__link');
 const activeHomePageBurger = document.querySelector('.homeButtonMobile__link');
 
 activeHomePage.addEventListener('click', () => {
