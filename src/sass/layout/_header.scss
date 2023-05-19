@@ -165,6 +165,10 @@ input:checked + .slider:before {
   padding: 0;
   border: none;
 }
+
+.close-menu-btn {
+  background: none;
+}
 .icon-close-menu {
   right: -10px;
   bottom: 3px;
@@ -179,6 +183,13 @@ input:checked + .slider:before {
 }
 
 @media screen and (max-width: 767px) {
+
+  .logo-name {
+    display: block;
+    margin-left: 8px;
+    margin-right: auto;
+  }
+
   .logOutAuthMobile {
     display: flex;
     align-items: center;
@@ -190,28 +201,49 @@ input:checked + .slider:before {
     position: absolute;
     bottom: 20px;
   }
-  .shoppingListButtonMobile-list {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-  }
   .shoppingListButtonMobile {
     display: flex;
     align-items: center;
     justify-content: center;
     color: $primary-bgc-light;
   }
-  .shoppingListButtonMobile:hover,
-  .homeButtonMobile:hover {
+
+  .shoppingListButtonMobile-list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .shoppingListButtonMobile__link {
+    display: flex;
+    align-items: center;
+    color: $primary-bgc-light;
+  }
+
+  .shoppingListButtonMobile__icon {
+    fill: $primary-bgc-light;
+  }
+
+  .shoppingListButtonMobile__link:hover,
+  .shoppingListButtonMobile__link:focus {
+    color: $accent-text-light;
+  }
+
+  .shoppingListButtonMobile__icon:hover,
+  .shoppingListButtonMobile__icon:focus {
+    fill: $accent-text-light;
+  }
+
+  .homeButtonMobile__link:hover,
+  .homeButtonMobile__link:focus,
+  .homeButtonMobile__link:active {
     color: $accent-text-light;
     cursor: pointer;
   }
-  .shoppingListButtonMobile__icon {
-    color: $primary-bgc-light;
+  .homeButtonMobile {
+    margin-bottom: 16px;
   }
-  .homeButtonMobile__link .shoppingListButtonMobile__link {
-    color: $header-bgc-light;
-  }
+
+
   .shoppingListButtonMobile__icon {
     height: 20px;
     width: 20px;

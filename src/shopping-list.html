@@ -9,52 +9,7 @@
     <link rel="stylesheet" href="./sass/index.scss" />
   </head>
   <body>
-    <header class="header-conteiner">
-      <div class="conteiner">
-        <div class="header-wrap">
-          <nav class="navigation">
-             <svg width="24" height="24">
-              <use href="/src/images/sprite.svg#icon-logo"></use>
-             </svg>
-            <a class="link logo-name" href="/src/index.html"
-              >Bookshelf</a
-            >
-            <div class="menu-conteiner-account js-menu-conteiner-account">
-              <ul class="nav-list list">
-                <li class="nav-list__item"><a class="link nav-home-page" href="/src/index.html">HOME</a>
-                </li>
-                <li class="nav-list__item"><a class="link nav-shopping-page link-active" href="./shopping-list.html">SHOPPING LIST<svg class="nav-shopping-page__icon"><use href="/src/images/sprite.svg#icon-uil_cart"></svg></a></li>
-              </ul>
-            </div>
-          </nav>
-          <label class="switch">
-            <input class="js-color-switcher" type="checkbox" name="check" value="yes" />
-            <span class="slider round"></span>
-          </label>
-          <div class="buttons-menu">
-              <button class="burger open-menu-btn" id="js-open-menu-btn btn" type="button" aria-expanded="false"><span class="burger__row"></span><span></span></button>
-                  <!-- <svg class="burger__icon" width="28" height="28" aria-label="Перемикач мобільного меню">
-                    <use class="burger__link" href="/src/images/sprite.svg#icon-burger"></use>
-                  </svg> -->
-                
-                <button class="close-menu-btn btn hidden" id="js-close-menu" type="button" aria-expanded="false" aria-controls="menu-conteiner">
-                  <img src="/src/images/header/x-close.png">
-              <!-- <svg class="icon-close-menu__icon" width="28" height="28" aria-label="Перемикач мобільного меню">
-                    <use class="icon-close-menu__link" href="/src/images/sprite.svg#icon-cross"></use>
-                  </svg>   -->
-                </button> 
-          </div>
-         
-          <div class="munu-conteiner-call-to-registration">
-            <button class="call-to-registration-btn" id="all-registration-btns"><span>Sign up</span><svg class="call-to-registration-btn__icon" width="20" height="20">
-              <use href="/src/images/sprite.svg#icon-arrow-right"></use>
-              </svg></button>
-              <!-- <h1>MUNU contaoner</h1> -->
-           </div> 
-        </div>
-      </div>
-    </div>
-    </header>
+    <include src="./partials/header.html"></include>
     <div class="container">
       <div class="container-shopping-support">
         <section class="support-shopping">
@@ -125,5 +80,6 @@
       </div>
     </div>
     <script src="./js/shopping-list/shopping-list.js" type="module"></script>    
+
   </body>
 </html>

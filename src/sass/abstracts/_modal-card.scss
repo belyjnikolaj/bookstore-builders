@@ -18,13 +18,13 @@
 }
 
 .modal-card {
-  width: 335px;
+  max-width: 335px;
   width: 100%;
   margin: 0 auto;
   padding: 24px 40px;
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  position: absolute;
-  top: 0;
+  position: fixed;
+  top: 28%;
   left: 50%;
   transform: translateX(-50%) scale(1);
   background-color: $header-bgc-light;
@@ -32,7 +32,7 @@
   border-radius: 18px;
 
   @media screen and (min-width: $tablet) {
-    top: 50%;
+    top: 56%;
     transform: translate(-50%, -50%) scale(1);
     max-width: 579px;
     padding: 40px;
@@ -216,10 +216,7 @@
   mix-blend-mode: luminosity;
 }
 
-// .shopping-list-links_item:hover {
-//   box-shadow: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.15)) ;
-//     mix-blend-mode: luminosity ;
-// }
+
 
 .shopping-list-message {
 

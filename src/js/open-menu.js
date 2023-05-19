@@ -6,9 +6,6 @@ const btnClose = document.querySelector('.close-menu-btn');
 const activeShopingPage = document.querySelector('.nav-shopping-page');
 const activeHomePage = document.querySelector('.nav-home-page');
 
-const isLogged = true;
-// markup()
-
 export const openBurgerMenu = () => {
   checkAuthState;
   menuBurgerConteiner.classList.add('open-menu');
@@ -35,3 +32,5 @@ activeShopingPage.addEventListener('click', () => {
   activeShopingPage.classList.add('link-active');
   activeHomePage.classList.remove('link-active');
 });
+
+
