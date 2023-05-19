@@ -10,7 +10,6 @@ import appleXIcone from '../images/shopping-list/apple-icon@2x.png';
 import bookshopIcone from '../images/shopping-list/bookshop-icon.png';
 import bookshopXIcone from '../images/shopping-list/bookshop-icon@2x.png';
 
-
 let isModalOpen = false;
 const bookApi = new BookAPI();
 
@@ -60,7 +59,6 @@ const renderBooks = (data, refs) => {
   );
 
   console.log({ book });
-
 
   const bookElMarkup = `
   <div class="modal-card">
@@ -121,10 +119,12 @@ const renderBooks = (data, refs) => {
   refs.modalCardWrapper.insertAdjacentHTML('beforeend', bookElMarkup);
 
   // refs.modalCard.insertAdjacentHTML('beforeend', bookElMarkup);
-////
-  const addToShoppingListBtn = document.querySelector('.button-add-shopping-list');
+  ////
+  const addToShoppingListBtn = document.querySelector(
+    '.button-add-shopping-list'
+  );
   addToShoppingListBtn.addEventListener('click', () => addToShoppingList(book));
-////
+  ////
   const modalCardClose = document.querySelector('.modal-card_close');
   modalCardClose.addEventListener('click', closeModalCard);
   console.log({ modalCardClose });
@@ -144,7 +144,9 @@ function addToShoppingList(book) {
     localStorage.setItem('shoppingList', JSON.stringify(updatedList));
 
     // Змінити текст кнопки на "Add to Shopping List"
-    const addToShoppingListBtn = document.querySelector('.button-add-shopping-list');
+    const addToShoppingListBtn = document.querySelector(
+      '.button-add-shopping-list'
+    );
     addToShoppingListBtn.textContent = 'Add to Shopping List';
 
     // Видалити повідомлення про додавання до списку покупок
@@ -165,56 +167,25 @@ function addToShoppingList(book) {
   localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
 
   // Змінити текст кнопки на "Remove from the shopping list"
-  const addToShoppingListBtn = document.querySelector('.button-add-shopping-list');
+  const addToShoppingListBtn = document.querySelector(
+    '.button-add-shopping-list'
+  );
   addToShoppingListBtn.textContent = 'Remove from the shopping list';
 
-   // Відобразити повідомлення про додавання до списку покупок
-   const message = document.createElement('p');
-   message.classList.add('shopping-list-message');
-   message.textContent =
-     'Congratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
+  // Відобразити повідомлення про додавання до списку покупок
+  const message = document.createElement('p');
+  message.classList.add('shopping-list-message');
+  message.textContent =
+    'Congratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
 
-     const buttonShopping = document.querySelector('.button-shopping');
+  const buttonShopping = document.querySelector('.button-shopping');
   buttonShopping.appendChild(message);
   // Відобразити підтвердження додавання до списку покупок
   alert('Book added to Shopping List!');
 }
-
 
 document.addEventListener('keydown', function (event) {
   if (event.key === 'Escape' && isModalOpen) {
     closeModalCard();
   }
 });
-
-
-
-
-/////////////////////////////////////////
-//best-selling-books
-
-//vika
-// function addClickListeners() {
-//   const bookCards = document.querySelectorAll('.js-best-sellers .modal_popap');
-//   bookCards.forEach(card => {
-//     const id = card.querySelector('.visually-hidden').textContent;
-//     card.addEventListener('click', () => {
-//       openModalCard(id);
-//       document.getElementById('data-modal-card').classList.remove('is-hidden');
-//     });
-//   });
-// }
-
-// fetchBestSellers()
-//   .then(data => {
-//     bestSellersGal.insertAdjacentHTML(
-//       'beforeend',
-//       createMarkupBooksCategories(data)
-//     );
-//     addClickListeners();
-//   })
-//   .catch(err => console.log(err));
-//vika
-
-///////////////
-
