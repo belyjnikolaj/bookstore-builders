@@ -1,7 +1,7 @@
 // import { toggleModal } from './js/modal-registration';
 import { fetchBestSellers } from './js/best-selling-books';
 import { supportUkraine } from './js/support-ukraine';
-
+import './js/jumpUpBtn';
 import { header } from './js/header';
 import { darkMode } from './js/dark';
 import { openBurgerMenu, closeBurgerMenu } from './js/open-menu';
