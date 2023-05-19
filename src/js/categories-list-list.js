@@ -2,7 +2,7 @@ const booksList = document.querySelector('.conteiner__books .books');
 async function fetchCategories() {
   try {
     const categories = await getCategories();
-    displayCategories(categories);
+    displayCategories(categories); // Переміщено перед викликом addEventListeners()
 
     const selectedCategory = localStorage.getItem('selectedCategory');
     if (selectedCategory) {
@@ -82,7 +82,7 @@ function createMarkupBooks(arr) {
   return (
     `<div class="books-container">` + // Add container div
     arr
-      .map(({ book_image, title, author }) => {
+      .map(({ book_image, title, author, _id }) => {
         const truncatedTitle = truncateTextToFitOneLine(title, 200);
         return ` <a href="#" class="modal_popap" target="_self">
           <div class="book-card">
@@ -91,7 +91,8 @@ function createMarkupBooks(arr) {
               </div> 
               <div class="info">
                   <h3 class="info-title__item">${truncatedTitle}</h3>
-                  <p class="info-author__item">${author}</p>             
+                  <p class="info-author__item">${author}</p>
+                  <p class="visually-hidden">${_id}</p>            
               </div>
           </div>
       </a>`;
@@ -196,6 +197,8 @@ function setSelectedCategoryOnReload() {
     });
   }
 }
+
+
 
 fetchCategories();
 
