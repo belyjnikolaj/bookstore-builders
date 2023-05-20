@@ -128,11 +128,11 @@ const renderBooks = (data, refs) => {
 };
 
 
-function removeFromShoppingList(bookId) {
-  const updatedList = shoppingList.filter(item => item.id !== bookId);
-  localStorage.setItem('shoppingList', JSON.stringify(updatedList));
-  renderShoppingList();
-}
+// function removeFromShoppingList(bookId) {
+//   const updatedList = shoppingList.filter(item => item._id !== bookId);
+//   localStorage.setItem('shoppingList', JSON.stringify(updatedList));
+//   renderShoppingList();
+// }
 
 
 function addToShoppingList(book) {
@@ -170,12 +170,12 @@ function addToShoppingList(book) {
   localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
 
 
-  const deleteBtns = document.querySelectorAll('.card-shopping__deleteBtn');
-deleteBtns.forEach((btn, index) => {
-  btn.addEventListener('click', () => {
-    removeFromShoppingList(shoppingList[index]._id);
-  });
-});
+//   const deleteBtns = document.querySelectorAll('.card-shopping__deleteBtn');
+// deleteBtns.forEach((btn, index) => {
+//   btn.addEventListener('click', () => {
+//     removeFromShoppingList(shoppingList[index]._id);
+//   });
+// });
 
 
   // Змінити текст кнопки на "Remove from the shopping list"

@@ -20,6 +20,21 @@ if (shoppingList.length === 0) {
   emptyListDiv.style.display = 'none';  // Приховати empty-list
 }
 
+
+function removeFromShoppingList(bookId) {
+  const updatedList = shoppingList.filter(item => item._id !== bookId);
+  localStorage.setItem('shoppingList', JSON.stringify(updatedList));
+  renderShoppingList();
+}
+
+const deleteBtns = document.querySelectorAll('.card-shopping__deleteBtn');
+deleteBtns.forEach((btn, index) => {
+  btn.addEventListener('click', () => {
+    removeFromShoppingList(shoppingList[index]._id);
+  });
+});
+
+
 function renderShoppingList() {
   shoppingListContainer.innerHTML = '';
 
@@ -33,6 +48,7 @@ function renderShoppingList() {
       amazon_product_url,
       buy_links: [amazon, apple, , , bookshop]
     } = book;
+
 
     const bookElMarkup = `
       <li class="js-card card-shopping">
@@ -81,8 +97,12 @@ function renderShoppingList() {
       </li>
     `;
 
+
     shoppingListContainer.insertAdjacentHTML('beforeend', bookElMarkup);
   });
+
+  
+
 }
 
 renderShoppingList();
