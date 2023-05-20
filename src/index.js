@@ -1,4 +1,4 @@
-import './js/auth.js';
+import './js/auth';
 import './js/best-selling-books';
 import './js/booksApi';
 import './js/categories-list-list';
