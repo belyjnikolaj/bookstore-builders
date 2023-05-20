@@ -1,10 +1,10 @@
 .home__page-container {
   padding-top: 40px;
   padding-bottom: 80px;
-  width: 100%;
+  max-width: $mobile;
   
   @media screen and (min-width: $tablet) {
-    width: $tablet;
+    max-width: $tablet;
     padding-bottom: 100px;
   }
 
@@ -13,7 +13,7 @@
     padding-top: 40px;
     width: 100%;
 
-    width: $desktop;
+    max-width: $desktop;
   }
 }
 .sidebar {
@@ -30,6 +30,9 @@
   width: 335px;
   height: 620px;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   /* полоса прокрутки (скроллбар) */
   ::-webkit-scrollbar {
     width: 8px;
@@ -47,13 +50,12 @@
   }
   @media screen and (min-width: $tablet) {
     // padding: 0 32px;
-    display: flex;
+        flex-direction: row;
     gap: 32px;
     height: 472px;
   }
 
   @media screen and (min-width: $desktop) {
-    display: block;
     flex-direction: column;
     padding: 0;
     width: 356px;
@@ -92,11 +94,15 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 1.3;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
   letter-spacing: -0.02em;
   color: $categories-text-light;
   cursor: pointer;
+  @media screen and (min-width: $tablet) {
+      margin-bottom: 32px;
+    }
 }
+
 
 .list_name:hover {
   font-weight: 700;
@@ -113,6 +119,9 @@
 .conteiner__books {
   width: 100%;
   padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   
   @media screen and (min-width: $tablet) {
     padding-top: 100px;
@@ -126,9 +135,13 @@
 }
 .conteiner__books-box {
   width: 100%;
-
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  
   @media screen and (min-width: $tablet) {
-    padding-top: 0;
+          padding-top: 0;
   }
 
   @media screen and (min-width: $desktop) {
@@ -142,7 +155,9 @@
   line-height: 1.1875;
   letter-spacing: -0.04em;
   color: $primary-text-light;
-  margin: 0;
+      
+    margin: 0;
+    
   @media screen and (min-width: $tablet) {
     font-size: 48px;
     line-height: 1.08;
@@ -152,31 +167,18 @@
 }
 
 .books {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-
-  flex-wrap: wrap;
-  // padding: 15px 15px;
-  gap: 15px;
-  // margin-left: auto;
-  // margin-right: auto;
   padding-top: 40px;
 }
 .books-container {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
   
   gap: 15px;
   @media screen and (min-width: $tablet) {
-    display: flex;
+   flex-direction: row;
    flex-wrap: wrap;
    gap: 25px;
-  }
-
-  @media screen and (min-width: $desktop) {
-    // scroll-snap-type: y proximity;
   }
 }
 
@@ -209,19 +211,26 @@
         height: 316px;
     }
   
-    @media screen and (min-width: $desktop) {
-      height: 256px;
+    // @media screen and (min-width: $desktop) {
+    //   height: 256px;
   
       // scroll-snap-type: y proximity;
-    }
+    // }
 }
 
 .book-card__img {
   width: 100%;
-  height: 100%;
+  height: 485px;
   object-fit: cover;
-  display: block;
   border-radius: 8px;
+  display: block;
+  @media screen and (min-width: $tablet) {
+      height: 316px;
+    }
+  
+  @media screen and (min-width: $desktop) {
+    height: 256px;
+  }
 }
 
 .info {
