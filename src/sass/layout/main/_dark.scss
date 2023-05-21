@@ -88,7 +88,6 @@
 }
 
 // ---стилі темної теми на сторінку авторизації
-
 .dark .modalAuth-content {
   background-color: $primary-bgc-dark;
   border: 2px solid $header-bgc-light;
@@ -101,6 +100,7 @@
 
 .dark .input-auth {
   border: 2px solid $primary-text-dark;
+  color: $primary-text-dark;
 }
 
 .dark .input-auth::placeholder {
@@ -114,6 +114,9 @@
 .dark .signup-button {
   background-color: $primary-text-dark;
   color: $header-bgc-dark;
+}
+.dark .active-tab.is-active {
+  color: $accent-text-light;
 }
 .dark .active-tab {
   color: $categories-text-dark;
