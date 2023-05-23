@@ -22,10 +22,8 @@ import {
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
-
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-
 
 const shoppingListButton = document.getElementById('shoppingListButton');
 const userButton = document.getElementById('userInAuth');
@@ -33,12 +31,13 @@ const logOutButton = document.getElementById('logOutAuth');
 const headerSignButton = document.getElementById('signUpAuth');
 const homeButton = document.getElementById('homeButton');
 
-const shoppingListButtonMobile = document.getElementById('shoppingListButtonMobile');
+const shoppingListButtonMobile = document.getElementById(
+  'shoppingListButtonMobile'
+);
 const userButtonMobile = document.getElementById('userInAuthMobile');
 const logOutButtonMobile = document.getElementById('logOutAuthMobile');
 const headerSignButtonMobile = document.getElementById('signUpAuthMobile');
 const homeButtonMobile = document.getElementById('homeButtonMobile');
-
 
 const modal = document.getElementById('modal-auth');
 const close = document.getElementById('close');
@@ -50,7 +49,7 @@ const signinButton = document.getElementById('signin-button');
 const signupButton = document.getElementById('signup-button');
 
 document.addEventListener('DOMContentLoaded', () => {
-  onAuthStateChanged(auth, user => { 
+  onAuthStateChanged(auth, user => {
     if (window.matchMedia('(min-width: 767px)').matches) {
       if (user) {
         userButton.style.display = 'flex';
@@ -89,11 +88,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 export function checkAuthState() {
-   Loading.standard('Loading...', {
-     backgroundColor: 'rgba(10,10,10,10)',
-   });
+  Loading.standard('Loading...', {
+    backgroundColor: 'rgba(10,10,10,10)',
+  });
   const user = auth.currentUser;
-  if (window.matchMedia("(min-width: 767px)").matches) {
+  if (window.matchMedia('(min-width: 767px)').matches) {
     if (user) {
       userButton.style.display = 'flex';
       shoppingListButton.style.display = 'flex';
@@ -127,10 +126,10 @@ export function checkAuthState() {
       headerSignButtonMobile.style.display = 'flex';
     }
   }
-   Loading.remove();
+  Loading.remove();
 }
 
-document.addEventListener('DOMContentLoaded', checkAuthState())
+document.addEventListener('DOMContentLoaded', checkAuthState());
 
 function closeModal() {
   modal.style.display = 'none';

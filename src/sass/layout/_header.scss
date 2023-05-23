@@ -227,6 +227,7 @@ input:checked + .slider:before {
 }
 
 .auth_button {
+  position: relative;
   display: none;
   align-items: center;
   justify-content: space-between;
@@ -305,7 +306,7 @@ input:checked + .slider:before {
   gap: 4px;
   position: absolute;
   bottom: 20px;
-  background-color: #fff;
+  background-color: $primary-text-dark;
 }
 
 @media screen and (max-width: 767px) {
@@ -322,31 +323,6 @@ input:checked + .slider:before {
       margin: 0 auto;
       height: 100%;
     }
-  }
-}
-.mobile-menu {
-  position: absolute;
-  top: 60;
-  left: 0;
-  width: 100%;
-  padding: 50px 20px 20px;
-  height: 100%;
-
-  background-image: url('/src/images/header/Group-imgs.png');
-  background-repeat: no-repeat;
-  background-position: 0 230;
-  background-size: contain;
-  background: $fonds-bgc;
-  // z-index: 5;
-  opacity: 0;
-  transform: translateY(-150%);
-  transition: transform 250ms cubic-bezier(0.12, 0.56, 0.79, 0.6),
-    opacity 1000ms ease-in;
-
-  &.open-menu {
-    transform: translateY(0);
-    opacity: 1;
-    z-index: 10;
   }
 }
 
