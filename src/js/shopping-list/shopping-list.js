@@ -1,3 +1,7 @@
+import '../auth';
+import '../dark';
+import '../header';
+import '../open-menu';
 
 import sprite from '../../images/sprite.svg';
 
@@ -11,15 +15,13 @@ import bookshopXIcone from '../../images/shopping-list/bookshop-icon@2x.png';
 const shoppingList = JSON.parse(localStorage.getItem('shoppingList')) || [];
 const shoppingListContainer = document.querySelector('.shopping-list');
 
-
 const emptyListDiv = document.querySelector('.empty-list');
 
 if (shoppingList.length === 0) {
-  emptyListDiv.style.display = 'block';  // Показати empty-list
+  emptyListDiv.style.display = 'block'; // Показати empty-list
 } else {
-  emptyListDiv.style.display = 'none';  // Приховати empty-list
+  emptyListDiv.style.display = 'none'; // Приховати empty-list
 }
-
 
 function removeFromShoppingList(bookId) {
   const updatedList = shoppingList.filter(item => item._id !== bookId);
@@ -34,7 +36,6 @@ deleteBtns.forEach((btn, index) => {
   });
 });
 
-
 function renderShoppingList() {
   shoppingListContainer.innerHTML = '';
 
@@ -46,9 +47,8 @@ function renderShoppingList() {
       description,
       author,
       amazon_product_url,
-      buy_links: [amazon, apple, , , bookshop]
+      buy_links: [amazon, apple, , , bookshop],
     } = book;
-
 
     const bookElMarkup = `
       <li class="js-card card-shopping">
@@ -97,22 +97,16 @@ function renderShoppingList() {
       </li>
     `;
 
-
     shoppingListContainer.insertAdjacentHTML('beforeend', bookElMarkup);
   });
-
-  
-
 }
 
 renderShoppingList();
 
-
-
-// async function fetchBook() { 
-//   const id = '643282b1e85766588626a080'; 
-//   const resp = await axios.get(`https://books-backend.p.goit.global/books/${id}`).then(response => response.data); 
-//    return resp; 
+// async function fetchBook() {
+//   const id = '643282b1e85766588626a080';
+//   const resp = await axios.get(`https://books-backend.p.goit.global/books/${id}`).then(response => response.data);
+//    return resp;
 
 // }
 
@@ -209,4 +203,3 @@ renderShoppingList();
 import '../dark.js';
 import '../support-ukraine.js';
 import '../modal-card.js';
-
