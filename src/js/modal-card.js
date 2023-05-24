@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { BookAPI } from './booksApi';
 
 import sprite from '../images/sprite.svg';
@@ -13,15 +12,18 @@ import bookshopXIcone from '../images/shopping-list/bookshop-icon@2x.png';
 let isModalOpen = false;
 const bookApi = new BookAPI();
 
-const URL_API = 'https://books-backend.p.goit.global/books/';
-
 const refs = {
   modalCardWrapper: document.querySelector('.modal-card_backdrop'),
 };
+
 let modalCardClose = '';
+
 if (isModalOpen) {
   modalCardClose = modalCardWrapper.querySelector('.modal-card_close');
 }
+
+modalCardClose.addEventListener('click', closeModalCard);
+
 
 export function openModalCard(bookId) {
   if (!isModalOpen) {
@@ -31,6 +33,7 @@ export function openModalCard(bookId) {
       .then(data => renderBooks(data, refs))
       .catch(e => console.log(e));
     isModalOpen = true;
+
   }
 }
 
@@ -50,6 +53,16 @@ function clearModalContent() {
   }
 }
 
+const shoppingList = JSON.parse(localStorage.getItem('shoppingList')) || [];
+
+const isBookInList = shoppingList.some(item => item._id === book._id);
+
+const addToShoppingListBtn = document.querySelector('.button-add-shopping-list');
+
+addToShoppingListBtn.addEventListener('click', () => addToShoppingList(book));
+
+
+
 const renderBooks = (data, refs) => {
   const book = data.data;
   const amazonLink = book.buy_links.find(link => link.name === 'Amazon');
@@ -57,6 +70,9 @@ const renderBooks = (data, refs) => {
   const appleBooksLink = book.buy_links.find(
     link => link.name === 'Apple Books'
   );
+
+
+  const addButtonLabel = isBookInList ? 'Remove from the shopping list' : 'Add to Shopping List';
 
   console.log({ book });
 
@@ -111,54 +127,39 @@ const renderBooks = (data, refs) => {
         </svg>
       </button>
       <div class="button-shopping">
-        <button class="button-add-shopping-list btn-modal-card" type="button">Add to Shopping List</button>
+        <button class="button-add-shopping-list btn-modal-card" type="button">${addButtonLabel}</button>
       </div>
     </div>
   `;
 
   refs.modalCardWrapper.insertAdjacentHTML('beforeend', bookElMarkup);
 
-  const addToShoppingListBtn = document.querySelector('.button-add-shopping-list');
-  addToShoppingListBtn.addEventListener('click', () => addToShoppingList(book));
-
-
-  const modalCardClose = document.querySelector('.modal-card_close');
-  modalCardClose.addEventListener('click', closeModalCard);
-  console.log({ modalCardClose });
 };
 
-
-// function removeFromShoppingList(bookId) {
-//   const updatedList = shoppingList.filter(item => item._id !== bookId);
-//   localStorage.setItem('shoppingList', JSON.stringify(updatedList));
-//   renderShoppingList();
-// }
-
+function removeFromShoppingList(bookId) {
+  const updatedList = shoppingList.filter(item => item._id !== bookId);
+  localStorage.setItem('shoppingList', JSON.stringify(updatedList));
+  renderShoppingList();
+  // shoppingList = updatedList; // Оновлення shoppingList після видалення
+}
 
 function addToShoppingList(book) {
 
 
   // Отримати поточні дані з localStorage
-  const shoppingList = JSON.parse(localStorage.getItem('shoppingList')) || [];
-
-  const isBookInList = shoppingList.some(item => item._id === book._id);
-
   if (isBookInList) {
     // Видалити книгу зі списку покупок
-    const updatedList = shoppingList.filter(item => item._id !== book._id);
-    localStorage.setItem('shoppingList', JSON.stringify(updatedList));
+
+    removeFromShoppingList(book._id)
 
     // Змінити текст кнопки на "Add to Shopping List"
-    const addToShoppingListBtn = document.querySelector(
-      '.button-add-shopping-list'
-    );
     addToShoppingListBtn.textContent = 'Add to Shopping List';
 
     // Видалити повідомлення про додавання до списку покупок
     const message = document.querySelector('.shopping-list-message');
     if (message) {
       message.remove();
-    }
+    } 
 
     return;
   }
@@ -169,19 +170,8 @@ function addToShoppingList(book) {
   // Зберегти оновлений список покупок в localStorage
   localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
 
-
-//   const deleteBtns = document.querySelectorAll('.card-shopping__deleteBtn');
-// deleteBtns.forEach((btn, index) => {
-//   btn.addEventListener('click', () => {
-//     removeFromShoppingList(shoppingList[index]._id);
-//   });
-// });
-
-
   // Змінити текст кнопки на "Remove from the shopping list"
-  const addToShoppingListBtn = document.querySelector(
-    '.button-add-shopping-list'
-  );
+
   addToShoppingListBtn.textContent = 'Remove from the shopping list';
 
   // Відобразити повідомлення про додавання до списку покупок
