@@ -1,11 +1,11 @@
-import sprite from '../images/sprite.svg';
+import sprite from './images/sprite.svg';
 
-import amazonIcone from '../images/shopping-list/amazon-icon.png';
-import amazonXIcone from '../images/shopping-list/amazon-icon@2x.png';
-import appleIcone from '../images/shopping-list/apple-icon.png';
-import appleXIcone from '../images/shopping-list/apple-icon@2x.png';
-import bookshopIcone from '../images/shopping-list/bookshop-icon.png';
-import bookshopXIcone from '../images/shopping-list/bookshop-icon@2x.png';
+import amazonIcone from './images/shopping-list/amazon-icon.png';
+import amazonXIcone from './images/shopping-list/amazon-icon@2x.png';
+import appleIcone from './images/shopping-list/apple-icon.png';
+import appleXIcone from './images/shopping-list/apple-icon@2x.png';
+import bookshopIcone from './images/shopping-list/bookshop-icon.png';
+import bookshopXIcone from './images/shopping-list/bookshop-icon@2x.png';
 
 const shoppingList = JSON.parse(localStorage.getItem('shoppingList')) || [];
 const shoppingListContainer = document.querySelector('.shopping-list');
@@ -98,6 +98,6 @@ function renderShoppingList() {
 
 renderShoppingList();
 
-import './dark';
-import './support-ukraine.js';
-import './modal-card.js';
+import './js/dark';
+import './js/support-ukraine.js';
+import './js/modal-card.js';
