@@ -23,14 +23,12 @@ if (shoppingList.length === 0) {
   emptyListDiv.style.display = 'none'; // Приховати empty-list
 }
 
-const deleteBtns = document.querySelectorAll('.card-shopping__deleteBtn');
-deleteBtns.forEach((btn, index) => {
-  btn.addEventListener('click', () => {
-    removeFromShoppingList(shoppingList[index]._id);
-    renderShoppingList();
-  });
-
-});
+function removeFromShoppingList(bookId) {
+  const updatedList = shoppingList.filter(item => item._id !== bookId);
+  localStorage.setItem('shoppingList', JSON.stringify(updatedList));
+  renderShoppingList();
+  // shoppingList = updatedList; // Оновлення shoppingList після видалення
+}
 
 function renderShoppingList() {
   shoppingListContainer.innerHTML = '';
@@ -94,6 +92,15 @@ function renderShoppingList() {
     `;
 
     shoppingListContainer.insertAdjacentHTML('beforeend', bookElMarkup);
+
+    const deleteBtns = document.querySelectorAll('.card-shopping__deleteBtn');
+deleteBtns.forEach((btn, index) => {
+  btn.addEventListener('click', () => {
+    removeFromShoppingList(shoppingList[index]._id);
+    renderShoppingList();
+  });
+
+});
 
   });
 

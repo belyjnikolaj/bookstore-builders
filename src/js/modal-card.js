@@ -136,12 +136,12 @@ const renderBooks = (data, refs) => {
 
 };
 
-function removeFromShoppingList(bookId) {
-  const updatedList = shoppingList.filter(item => item._id !== bookId);
-  localStorage.setItem('shoppingList', JSON.stringify(updatedList));
-  renderShoppingList();
-  // shoppingList = updatedList; // Оновлення shoppingList після видалення
-}
+// function removeFromShoppingList(bookId) {
+//   const updatedList = shoppingList.filter(item => item._id !== bookId);
+//   localStorage.setItem('shoppingList', JSON.stringify(updatedList));
+//   renderShoppingList();
+//   // shoppingList = updatedList; // Оновлення shoppingList після видалення
+// }
 
 function addToShoppingList(book) {
 
