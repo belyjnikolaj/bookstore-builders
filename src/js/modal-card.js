@@ -15,15 +15,10 @@ const bookApi = new BookAPI();
 const refs = {
   modalCardWrapper: document.querySelector('.modal-card_backdrop'),
 };
-
 let modalCardClose = '';
-
 if (isModalOpen) {
   modalCardClose = modalCardWrapper.querySelector('.modal-card_close');
 }
-
-modalCardClose.addEventListener('click', closeModalCard);
-
 
 export function openModalCard(bookId) {
   if (!isModalOpen) {
@@ -33,7 +28,6 @@ export function openModalCard(bookId) {
       .then(data => renderBooks(data, refs))
       .catch(e => console.log(e));
     isModalOpen = true;
-
   }
 }
 
@@ -53,16 +47,6 @@ function clearModalContent() {
   }
 }
 
-const shoppingList = JSON.parse(localStorage.getItem('shoppingList')) || [];
-
-const isBookInList = shoppingList.some(item => item._id === book._id);
-
-const addToShoppingListBtn = document.querySelector('.button-add-shopping-list');
-
-addToShoppingListBtn.addEventListener('click', () => addToShoppingList(book));
-
-
-
 const renderBooks = (data, refs) => {
   const book = data.data;
   const amazonLink = book.buy_links.find(link => link.name === 'Amazon');
@@ -71,6 +55,8 @@ const renderBooks = (data, refs) => {
     link => link.name === 'Apple Books'
   );
 
+  const shoppingList = JSON.parse(localStorage.getItem('shoppingList'));
+  const isBookInList = shoppingList.some(item => item._id === book._id);
 
   const addButtonLabel = isBookInList ? 'Remove from the shopping list' : 'Add to Shopping List';
 
@@ -134,32 +120,41 @@ const renderBooks = (data, refs) => {
 
   refs.modalCardWrapper.insertAdjacentHTML('beforeend', bookElMarkup);
 
+  const addToShoppingListBtn = document.querySelector('.button-add-shopping-list');
+  addToShoppingListBtn.addEventListener('click', () => addToShoppingList(book));
+
+
+  const modalCardClose = document.querySelector('.modal-card_close');
+  modalCardClose.addEventListener('click', closeModalCard);
+  console.log({ modalCardClose });
 };
 
-// function removeFromShoppingList(bookId) {
-//   const updatedList = shoppingList.filter(item => item._id !== bookId);
-//   localStorage.setItem('shoppingList', JSON.stringify(updatedList));
-//   renderShoppingList();
-//   // shoppingList = updatedList; // Оновлення shoppingList після видалення
-// }
+
 
 function addToShoppingList(book) {
 
 
   // Отримати поточні дані з localStorage
+  const shoppingList = JSON.parse(localStorage.getItem('shoppingList'));
+
+  const isBookInList = shoppingList.some(item => item._id === book._id);
+
   if (isBookInList) {
     // Видалити книгу зі списку покупок
-
-    removeFromShoppingList(book._id)
+    const updatedList = shoppingList.filter(item => item._id !== book._id);
+    localStorage.setItem('shoppingList', JSON.stringify(updatedList));
 
     // Змінити текст кнопки на "Add to Shopping List"
+    const addToShoppingListBtn = document.querySelector(
+      '.button-add-shopping-list'
+    );
     addToShoppingListBtn.textContent = 'Add to Shopping List';
 
     // Видалити повідомлення про додавання до списку покупок
     const message = document.querySelector('.shopping-list-message');
     if (message) {
       message.remove();
-    } 
+    }
 
     return;
   }
@@ -170,8 +165,11 @@ function addToShoppingList(book) {
   // Зберегти оновлений список покупок в localStorage
   localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
 
-  // Змінити текст кнопки на "Remove from the shopping list"
 
+  // Змінити текст кнопки на "Remove from the shopping list"
+  const addToShoppingListBtn = document.querySelector(
+    '.button-add-shopping-list'
+  );
   addToShoppingListBtn.textContent = 'Remove from the shopping list';
 
   // Відобразити повідомлення про додавання до списку покупок

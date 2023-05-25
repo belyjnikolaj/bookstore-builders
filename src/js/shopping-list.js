@@ -1,32 +1,28 @@
-import sprite from './images/sprite.svg';
+import sprite from '../images/sprite.svg';
 
-import amazonIcone from './images/shopping-list/amazon-icon.png';
-import amazonXIcone from './images/shopping-list/amazon-icon@2x.png';
-import appleIcone from './images/shopping-list/apple-icon.png';
-import appleXIcone from './images/shopping-list/apple-icon@2x.png';
-import bookshopIcone from './images/shopping-list/bookshop-icon.png';
-import bookshopXIcone from './images/shopping-list/bookshop-icon@2x.png';
+import amazonIcone from '../images/shopping-list/amazon-icon.png';
+import amazonXIcone from '../images/shopping-list/amazon-icon@2x.png';
+import appleIcone from '../images/shopping-list/apple-icon.png';
+import appleXIcone from '../images/shopping-list/apple-icon@2x.png';
+import bookshopIcone from '../images/shopping-list/bookshop-icon.png';
+import bookshopXIcone from '../images/shopping-list/bookshop-icon@2x.png';
 
 const shoppingList = JSON.parse(localStorage.getItem('shoppingList')) || [];
 const shoppingListContainer = document.querySelector('.shopping-list');
 
-
 const emptyListDiv = document.querySelector('.empty-list');
 
 if (shoppingList.length === 0) {
-  emptyListDiv.style.display = 'block';  // Показати empty-list
+  emptyListDiv.style.display = 'block'; // Показати empty-list
 } else {
-  emptyListDiv.style.display = 'none';  // Приховати empty-list
+  emptyListDiv.style.display = 'none'; // Приховати empty-list
 }
-
 
 function removeFromShoppingList(bookId) {
   const updatedList = shoppingList.filter(item => item._id !== bookId);
   localStorage.setItem('shoppingList', JSON.stringify(updatedList));
   renderShoppingList();
 }
-
-
 
 function renderShoppingList() {
   shoppingListContainer.innerHTML = '';
@@ -39,9 +35,8 @@ function renderShoppingList() {
       description,
       author,
       amazon_product_url,
-      buy_links: [amazon, apple, , , bookshop]
+      buy_links: [amazon, apple, , , bookshop],
     } = book;
-
 
     const bookElMarkup = `
       <li class="js-card card-shopping">
@@ -90,23 +85,19 @@ function renderShoppingList() {
       </li>
     `;
 
-
     shoppingListContainer.insertAdjacentHTML('beforeend', bookElMarkup);
 
     const deleteBtns = document.querySelectorAll('.card-shopping__deleteBtn');
-deleteBtns.forEach((btn, index) => {
-  btn.addEventListener('click', () => {
-    removeFromShoppingList(shoppingList[index]._id);
+    deleteBtns.forEach((btn, index) => {
+      btn.addEventListener('click', () => {
+        removeFromShoppingList(shoppingList[index]._id);
+      });
+    });
   });
-});
-  });
-
-  
-
 }
 
 renderShoppingList();
 
-import './js/dark.js';
-import './js/support-ukraine.js';
-import './js/modal-card.js';
+import './dark';
+import './support-ukraine.js';
+import './modal-card.js';
