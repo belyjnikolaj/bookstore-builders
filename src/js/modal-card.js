@@ -13,8 +13,6 @@ import bookshopXIcone from '../images/shopping-list/bookshop-icon@2x.png';
 let isModalOpen = false;
 const bookApi = new BookAPI();
 
-const URL_API = 'https://books-backend.p.goit.global/books/';
-
 const refs = {
   modalCardWrapper: document.querySelector('.modal-card_backdrop'),
 };
@@ -57,6 +55,11 @@ const renderBooks = (data, refs) => {
   const appleBooksLink = book.buy_links.find(
     link => link.name === 'Apple Books'
   );
+
+  const shoppingList = JSON.parse(localStorage.getItem('shoppingList')) || [];
+  const isBookInList = shoppingList.some(item => item._id === book._id);
+
+  const addButtonLabel = isBookInList ? 'Remove from the shopping list' : 'Add to Shopping List';
 
   console.log({ book });
 
@@ -111,7 +114,7 @@ const renderBooks = (data, refs) => {
         </svg>
       </button>
       <div class="button-shopping">
-        <button class="button-add-shopping-list btn-modal-card" type="button">Add to Shopping List</button>
+        <button class="button-add-shopping-list btn-modal-card" type="button">${addButtonLabel}</button>
       </div>
     </div>
   `;
@@ -127,12 +130,6 @@ const renderBooks = (data, refs) => {
   console.log({ modalCardClose });
 };
 
-
-// function removeFromShoppingList(bookId) {
-//   const updatedList = shoppingList.filter(item => item._id !== bookId);
-//   localStorage.setItem('shoppingList', JSON.stringify(updatedList));
-//   renderShoppingList();
-// }
 
 
 function addToShoppingList(book) {
@@ -168,14 +165,6 @@ function addToShoppingList(book) {
 
   // Зберегти оновлений список покупок в localStorage
   localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
-
-
-//   const deleteBtns = document.querySelectorAll('.card-shopping__deleteBtn');
-// deleteBtns.forEach((btn, index) => {
-//   btn.addEventListener('click', () => {
-//     removeFromShoppingList(shoppingList[index]._id);
-//   });
-// });
 
 
   // Змінити текст кнопки на "Remove from the shopping list"
