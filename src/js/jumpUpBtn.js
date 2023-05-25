@@ -9,7 +9,7 @@ function scrollFunction() {
     document.body.scrollTop > 1000 ||
     document.documentElement.scrollTop > 1000
   ) {
-    document.getElementById('jumpUpBtn').style.display = '';
+    document.getElementById('jumpUpBtn').style.display = 'flex';
   } else {
     document.getElementById('jumpUpBtn').style.display = 'none';
   }
