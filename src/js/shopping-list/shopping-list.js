@@ -1,12 +1,16 @@
+
 import '../auth';
 import '../dark';
 import '../header';
 import '../open-menu';
 
+
 import sprite from '../../images/sprite.svg';
 
 import amazonIcone from '../../images/shopping-list/amazon-icon.png';
 import amazonXIcone from '../../images/shopping-list/amazon-icon@2x.png';
+import amazonIconeDark from '../../images/shopping-list/amazon@1x.png';
+import amazonXIconeDark from '../../images/shopping-list/amazon@2x.png';
 import appleIcone from '../../images/shopping-list/apple-icon.png';
 import appleXIcone from '../../images/shopping-list/apple-icon@2x.png';
 import bookshopIcone from '../../images/shopping-list/bookshop-icon.png';
@@ -29,6 +33,7 @@ function removeFromShoppingList(bookId) {
   renderShoppingList();
   // shoppingList = updatedList; // Оновлення shoppingList після видалення
 }
+
 
 function renderShoppingList() {
   shoppingListContainer.innerHTML = '';
@@ -57,9 +62,13 @@ function renderShoppingList() {
               <ul class="card-shopping__listLinks">
                 <li class="card-shopping__listItem">
                   <a href="${amazon_product_url}" class="card-shopping__link">
-                    <picture>
+                    <picture display="none">
                       <source srcset="${amazonIcone} 1x, ${amazonXIcone} 2x" type="image/png" />
                       <img class="amazon-icon" src="${amazonIcone}" alt="Amazon" />
+                    </picture>
+                    <picture >
+                      <source srcset="${amazonIconeDark} 1x, ${amazonXIconeDark} 2x" type="image/png" />
+                      <img class="amazon-icon" src="${amazonIconeDark}" alt="Amazon" />
                     </picture>
                   </a>
                 </li>
@@ -99,6 +108,7 @@ deleteBtns.forEach((btn, index) => {
     removeFromShoppingList(shoppingList[index]._id);
     renderShoppingList();
   });
+
 
 });
 

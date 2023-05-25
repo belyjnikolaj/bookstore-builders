@@ -123,8 +123,7 @@
 }
 
 // --стилі темної теми для шопінг ліст
-
-.dark .shopping-list__title {
+.dark .dark .shopping-list__title {
   color: $primary-text-dark;
 }
 
@@ -144,6 +143,9 @@
   }
   &__description {
     color: $primary-text-dark;
+  }
+  &__deleteBtn {
+    background-color: $header-bgc-dark;
   }
 }
 .dark .shopping-list-message {
