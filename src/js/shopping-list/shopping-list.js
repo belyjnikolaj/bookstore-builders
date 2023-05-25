@@ -199,6 +199,6 @@ renderShoppingList();
 
 // displayShoppingList()
 
-import '../dark.js';
-import '../support-ukraine.js';
-import '../modal-card.js';
+import '../dark';
+import '../support-ukraine';
+import '../modal-card';
