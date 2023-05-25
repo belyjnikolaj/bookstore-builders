@@ -21,24 +21,25 @@ import {
 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
-
-
+  
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-
 
 const shoppingListButton = document.getElementById('shoppingListButton');
 const userButton = document.getElementById('userInAuth');
 const logOutButton = document.getElementById('logOutAuth');
 const headerSignButton = document.getElementById('signUpAuth');
 const homeButton = document.getElementById('homeButton');
+const userNameAuth = document.getElementById('userNameAuth');
 
-const shoppingListButtonMobile = document.getElementById('shoppingListButtonMobile');
+const shoppingListButtonMobile = document.getElementById(
+  'shoppingListButtonMobile'
+);
 const userButtonMobile = document.getElementById('userInAuthMobile');
 const logOutButtonMobile = document.getElementById('logOutAuthMobile');
 const headerSignButtonMobile = document.getElementById('signUpAuthMobile');
 const homeButtonMobile = document.getElementById('homeButtonMobile');
-
+const userNameAuthMobile = document.getElementById('userNameAuthMobile');
 
 const modal = document.getElementById('modal-auth');
 const close = document.getElementById('close');
@@ -49,88 +50,105 @@ const signupContent = document.getElementById('signup-content');
 const signinButton = document.getElementById('signin-button');
 const signupButton = document.getElementById('signup-button');
 
-document.addEventListener('DOMContentLoaded', () => {
-  onAuthStateChanged(auth, user => { 
-    if (window.matchMedia('(min-width: 767px)').matches) {
-      if (user) {
-        userButton.style.display = 'flex';
-        shoppingListButton.style.display = 'flex';
-        homeButton.style.display = 'block';
-        headerSignButton.style.display = 'none';
-        userButton.textContent = user.displayName;
+ const addToShoppingListBtn = document.querySelector(
+   '.button-add-shopping-list'
+ );
+ 
+ 
+
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    Loading.standard('Loading...', {
+      backgroundColor: 'rgba(10,10,10,10)',
+      minVisibleDuration: 500,
+    });
+
+    onAuthStateChanged(auth, user => {
+      if (window.matchMedia('(min-width: 767px)').matches) {
+        if (user) {
+          userButton.style.display = 'flex';
+          shoppingListButton.style.display = 'flex';
+          homeButton.style.display = 'block';
+          headerSignButton.style.display = 'none';
+          userNameAuth.textContent = user.displayName;
+        } else {
+          userButton.style.display = 'none';
+          logOutButton.style.display = 'none';
+          shoppingListButton.style.display = 'none';
+          homeButton.style.display = 'none';
+          headerSignButton.style.display = 'flex';
+        }
       } else {
-        userButton.style.display = 'none';
-        logOutButton.style.display = 'none';
         shoppingListButton.style.display = 'none';
         homeButton.style.display = 'none';
-        headerSignButton.style.display = 'flex';
+        headerSignButton.style.display = 'none';
+        logOutButton.style.display = 'none';
+        if (user) {
+          userButtonMobile.style.display = 'flex';
+          logOutButtonMobile.style.display = 'flex';
+          shoppingListButtonMobile.style.display = 'flex';
+          homeButtonMobile.style.display = 'flex';
+          headerSignButtonMobile.style.display = 'none';
+          userNameAuthMobile.textContent = user.displayName;
+        } else {
+          userButtonMobile.style.display = 'none';
+          logOutButtonMobile.style.display = 'none';
+          shoppingListButtonMobile.style.display = 'none';
+          homeButtonMobile.style.display = 'none';
+          headerSignButtonMobile.style.display = 'flex';
+        }
       }
-    } else {
-      shoppingListButton.style.display = 'none';
-      homeButton.style.display = 'none';
-      headerSignButton.style.display = 'none';
-      logOutButton.style.display = 'none';
-      if (user) {
-        userButtonMobile.style.display = 'flex';
-        logOutButtonMobile.style.display = 'flex';
-        shoppingListButtonMobile.style.display = 'flex';
-        homeButtonMobile.style.display = 'flex';
-        headerSignButtonMobile.style.display = 'none';
-        userButtonMobile.textContent = user.displayName;
-      } else {
-        userButtonMobile.style.display = 'none';
-        logOutButtonMobile.style.display = 'none';
-        shoppingListButtonMobile.style.display = 'none';
-        homeButtonMobile.style.display = 'none';
-        headerSignButtonMobile.style.display = 'flex';
-      }
-    }
-  });
+    }); 
+
+    Loading.remove();
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 export function checkAuthState() {
-   Loading.standard('Loading...', {
-     backgroundColor: 'rgba(10,10,10,10)',
-   });
+  Loading.standard('Loading...', {
+    backgroundColor: 'rgba(10,10,10,10)',
+  });
   const user = auth.currentUser;
-  if (window.matchMedia("(min-width: 767px)").matches) {
-    if (user) {
-      userButton.style.display = 'flex';
-      shoppingListButton.style.display = 'flex';
-      homeButton.style.display = 'block';
-      headerSignButton.style.display = 'none';
-      userButton.textContent = user.displayName;
-    } else {
-      userButton.style.display = 'none';
-      logOutButton.style.display = 'none';
-      shoppingListButton.style.display = 'none';
-      homeButton.style.display = 'none';
-      headerSignButton.style.display = 'flex';
-    }
-  } else {
-    shoppingListButton.style.display = 'none';
-    homeButton.style.display = 'none';
-    headerSignButton.style.display = 'none';
-    logOutButton.style.display = 'none';
-    if (user) {
-      userButtonMobile.style.display = 'flex';
-      logOutButtonMobile.style.display = 'flex';
-      shoppingListButtonMobile.style.display = 'flex';
-      homeButtonMobile.style.display = 'flex';
-      headerSignButtonMobile.style.display = 'none';
-      userButtonMobile.textContent = user.displayName;
-    } else {
-      userButtonMobile.style.display = 'none';
-      logOutButtonMobile.style.display = 'none';
-      shoppingListButtonMobile.style.display = 'none';
-      homeButtonMobile.style.display = 'none';
-      headerSignButtonMobile.style.display = 'flex';
-    }
-  }
-   Loading.remove();
-}
+  if (window.matchMedia('(min-width: 767px)').matches) {
+        if (user) {
+          userButton.style.display = 'flex';
+          shoppingListButton.style.display = 'flex';
+          homeButton.style.display = 'block';
+          headerSignButton.style.display = 'none';
+          userNameAuth.textContent = user.displayName;
+        } else {
+          userButton.style.display = 'none';
+          logOutButton.style.display = 'none';
+          shoppingListButton.style.display = 'none';
+          homeButton.style.display = 'none';
+          headerSignButton.style.display = 'flex';
+        }
+      } else {
+        shoppingListButton.style.display = 'none';
+        homeButton.style.display = 'none';
+        headerSignButton.style.display = 'none';
+        logOutButton.style.display = 'none';
+        if (user) {
+          userButtonMobile.style.display = 'flex';
+          logOutButtonMobile.style.display = 'flex';
+          shoppingListButtonMobile.style.display = 'flex';
+          homeButtonMobile.style.display = 'flex';
+          headerSignButtonMobile.style.display = 'none';
+          userNameAuthMobile.textContent = user.displayName;
+        } else {
+          userButtonMobile.style.display = 'none';
+          logOutButtonMobile.style.display = 'none';
+          shoppingListButtonMobile.style.display = 'none';
+          homeButtonMobile.style.display = 'none';
+          headerSignButtonMobile.style.display = 'flex';
+        }
+      }
+  
+  Loading.remove();
 
-document.addEventListener('DOMContentLoaded', checkAuthState())
+}
 
 function closeModal() {
   modal.style.display = 'none';

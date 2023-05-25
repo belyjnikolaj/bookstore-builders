@@ -16,6 +16,7 @@
     max-width: $desktop;
   }
 }
+
 .sidebar {
   @media screen and (min-width: $tablet) {
     display: flex;
@@ -26,6 +27,7 @@
     display: block;
   }
 }
+
 .sidebar-container {
   width: 335px;
   height: 620px;
@@ -33,6 +35,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
   /* полоса прокрутки (скроллбар) */
   ::-webkit-scrollbar {
     width: 8px;
@@ -45,9 +48,6 @@
     border-radius: 9em;
   }
 
-  ::-webkit-scrollbar-thumb:hover {
-    background-color: inherit;
-  }
   @media screen and (min-width: $tablet) {
     // padding: 0 32px;
     flex-direction: row;
@@ -76,10 +76,13 @@
   @media screen and (min-width: $desktop) {
     width: 356px;
     height: 472px;
+
   }
 }
+
 .categories__support {
   padding-top: 40px;
+
   @media screen and (min-width: $tablet) {
     padding-top: 0;
   }
@@ -97,10 +100,13 @@
   letter-spacing: -0.02em;
   color: $categories-text-light;
   cursor: pointer;
+  transition: color 250ms, font-weight 250ms, text-transform 250ms;
+
   @media screen and (min-width: $tablet) {
     margin-bottom: 32px;
   }
 }
+
 
 .list_name:hover {
   font-weight: 700;
@@ -112,6 +118,12 @@
   font-weight: 700;
   color: $accent-text-light;
   text-transform: uppercase;
+}
+
+.categories .list_name.selected {
+  text-transform: uppercase;
+  color: $accent-text-light;
+  font-weight: 700;
 }
 
 .conteiner__books {
@@ -131,10 +143,11 @@
     padding-left: 33px;
   }
 }
+
 .conteiner__books-box {
   width: 100%;
   display: flex;
-  // align-items: center;
+  align-items: center;
   flex-direction: column;
   justify-content: center;
 
@@ -160,19 +173,21 @@
     font-size: 48px;
     line-height: 1.08;
   }
-  @media screen and (min-width: $desktop) {
-  }
+
+  @media screen and (min-width: $desktop) {}
 }
 
 .books {
   padding-top: 40px;
 }
+
 .books-container {
   display: flex;
   flex-direction: column;
   align-items: center;
 
   gap: 15px;
+
   @media screen and (min-width: $tablet) {
     flex-direction: row;
     flex-wrap: wrap;
@@ -205,6 +220,7 @@
 .book-card__img-box {
   width: 100%;
   height: 485px;
+
   @media screen and (min-width: $tablet) {
     height: 316px;
   }
@@ -222,6 +238,7 @@
   object-fit: cover;
   border-radius: 8px;
   display: block;
+
   @media screen and (min-width: $tablet) {
     height: 316px;
   }
@@ -255,10 +272,4 @@
   letter-spacing: -0.04em;
 
   color: $secondary-text;
-}
-
-.categories .list_name.selected {
-  text-transform: uppercase;
-  color: #4f2ee8;
-  font-weight: 700;
 }
