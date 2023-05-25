@@ -23,23 +23,19 @@ if (shoppingList.length === 0) {
   emptyListDiv.style.display = 'none'; // Приховати empty-list
 }
 
-function removeFromShoppingList(bookId) {
-  const updatedList = shoppingList.filter(item => item._id !== bookId);
-  localStorage.setItem('shoppingList', JSON.stringify(updatedList));
-  renderShoppingList();
-}
-
 const deleteBtns = document.querySelectorAll('.card-shopping__deleteBtn');
 deleteBtns.forEach((btn, index) => {
   btn.addEventListener('click', () => {
     removeFromShoppingList(shoppingList[index]._id);
+    renderShoppingList();
   });
+
 });
 
 function renderShoppingList() {
   shoppingListContainer.innerHTML = '';
 
-  shoppingList.forEach(book => {
+  shoppingList.forEach((book, index) => {
     const {
       book_image,
       title,
@@ -88,7 +84,7 @@ function renderShoppingList() {
               </ul>
             </div>
           </div>
-          <button class="card-shopping__deleteBtn">
+          <button class="card-shopping__deleteBtn" type="button">
             <svg width="28" height="28" class="card-shoppin__deleteBtn--icon">
               <use href="${sprite}#icon-delete"></use>
             </svg>
@@ -98,15 +94,18 @@ function renderShoppingList() {
     `;
 
     shoppingListContainer.insertAdjacentHTML('beforeend', bookElMarkup);
+
   });
-}
 
 renderShoppingList();
 
-// async function fetchBook() {
-//   const id = '643282b1e85766588626a080';
-//   const resp = await axios.get(`https://books-backend.p.goit.global/books/${id}`).then(response => response.data);
-//    return resp;
+///////////////////////////////////////////////////
+
+// async function fetchBook() { 
+//   const id = '643282b1e85766588626a080'; 
+//   const resp = await axios.get(`https://books-backend.p.goit.global/books/${id}`).then(response => response.data); 
+//    return resp; 
+
 
 // }
 
