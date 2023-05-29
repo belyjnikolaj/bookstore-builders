@@ -15,7 +15,9 @@ const bookApi = new BookAPI();
 const refs = {
   modalCardWrapper: document.querySelector('.modal-card_backdrop'),
 };
+
 let modalCardClose = '';
+
 if (isModalOpen) {
   modalCardClose = modalCardWrapper.querySelector('.modal-card_close');
 }
@@ -59,8 +61,7 @@ const renderBooks = (data, refs) => {
   const isBookInList = shoppingList.some(item => item._id === book._id);
 
   const addButtonLabel = isBookInList ? 'Remove from the shopping list' : 'Add to Shopping List';
-
-  console.log({ book });
+  const addListMessage = isBookInList ? 'Congratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.' : '';
 
   const bookElMarkup = `
   <div class="modal-card">
@@ -114,6 +115,7 @@ const renderBooks = (data, refs) => {
       </button>
       <div class="button-shopping">
         <button class="button-add-shopping-list btn-modal-card" type="button">${addButtonLabel}</button>
+        <p class="shopping-list-message">${addListMessage}</p>
       </div>
     </div>
   `;
@@ -145,16 +147,14 @@ function addToShoppingList(book) {
     localStorage.setItem('shoppingList', JSON.stringify(updatedList));
 
     // Змінити текст кнопки на "Add to Shopping List"
-    const addToShoppingListBtn = document.querySelector(
-      '.button-add-shopping-list'
-    );
+    const addToShoppingListBtn = document.querySelector('.button-add-shopping-list');
+
     addToShoppingListBtn.textContent = 'Add to Shopping List';
 
     // Видалити повідомлення про додавання до списку покупок
     const message = document.querySelector('.shopping-list-message');
-    if (message) {
-      message.remove();
-    }
+
+    message.textContent = '';
 
     return;
   }
@@ -167,19 +167,15 @@ function addToShoppingList(book) {
 
 
   // Змінити текст кнопки на "Remove from the shopping list"
-  const addToShoppingListBtn = document.querySelector(
-    '.button-add-shopping-list'
-  );
+  const addToShoppingListBtn = document.querySelector('.button-add-shopping-list');
+
   addToShoppingListBtn.textContent = 'Remove from the shopping list';
 
   // Відобразити повідомлення про додавання до списку покупок
-  const message = document.createElement('p');
-  message.classList.add('shopping-list-message');
-  message.textContent =
-    'Congratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
 
-  const buttonShopping = document.querySelector('.button-shopping');
-  buttonShopping.appendChild(message);
+  const message = document.querySelector('.shopping-list-message');
+  message.textContent = 'Congratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
+
   // Відобразити підтвердження додавання до списку покупок
   alert('Book added to Shopping List!');
 }
