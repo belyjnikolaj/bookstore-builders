@@ -121,16 +121,27 @@ const shoppingListContainer = document.querySelector('.shopping-list');
 
 const emptyListDiv = document.querySelector('.empty-list');
 
-if (shoppingList.length === 0) {
-  emptyListDiv.style.display = 'block'; // Показати empty-list
-} else {
-  emptyListDiv.style.display = 'none'; // Приховати empty-list
+function updateEmptyListDiv() {
+  if (shoppingList.length === 0) {
+    emptyListDiv.style.display = 'block'; // Показати empty-list
+  } else {
+    emptyListDiv.style.display = 'none'; // Приховати empty-list
+  }
+}
+
+
+function updateAndRenderShoppingList() {
+  shoppingListContainer.innerHTML = '';
+  addClickShowModal(); // Добавляем обработчики событий для модальных окон
+  renderShoppingList();
 }
 
 function removeFromShoppingList(bookId) {
   const updatedList = shoppingList.filter(item => item._id !== bookId);
   localStorage.setItem('shoppingList', JSON.stringify(updatedList));
-  renderShoppingList();
+  shoppingList = updatedList; // Обновляем список в памяти
+  updateEmptyListDiv(); // Обновляем отображение empty-list
+  updateAndRenderShoppingList();
 }
 
 function renderShoppingList() {
@@ -224,8 +235,9 @@ function addClickShowModal() {
   });
 }
 
-
 renderShoppingList();
+updateEmptyListDiv();
+addClickShowModal();
 
 import './js/dark';
 import './js/support-ukraine.js';
