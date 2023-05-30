@@ -57,7 +57,7 @@ const renderBooks = (data, refs) => {
     link => link.name === 'Apple Books'
   );
 
-  const shoppingList = JSON.parse(localStorage.getItem('shoppingList'));
+  const shoppingList = JSON.parse(localStorage.getItem('shoppingList')) ?? [];
   const isBookInList = shoppingList.some(item => item._id === book._id);
 
   const addButtonLabel = isBookInList ? 'Remove from the shopping list' : 'Add to Shopping List';
@@ -137,7 +137,7 @@ function addToShoppingList(book) {
 
 
   // Отримати поточні дані з localStorage
-  const shoppingList = JSON.parse(localStorage.getItem('shoppingList'));
+  const shoppingList = JSON.parse(localStorage.getItem('shoppingList')) ?? [];
 
   const isBookInList = shoppingList.some(item => item._id === book._id);
 
