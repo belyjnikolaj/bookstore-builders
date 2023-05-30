@@ -116,32 +116,25 @@ import appleXIcone from './images/shopping-list/apple-icon@2x.png';
 import bookshopIcone from './images/shopping-list/bookshop-icon.png';
 import bookshopXIcone from './images/shopping-list/bookshop-icon@2x.png';
 
-const shoppingList = JSON.parse(localStorage.getItem('shoppingList')) || [];
+const shoppingList = JSON.parse(localStorage.getItem('shoppingList')) ?? [];
 const shoppingListContainer = document.querySelector('.shopping-list');
 
 const emptyListDiv = document.querySelector('.empty-list');
 
-function updateEmptyListDiv() {
-  if (shoppingList.length === 0) {
-    emptyListDiv.style.display = 'block'; // Показати empty-list
-  } else {
-    emptyListDiv.style.display = 'none'; // Приховати empty-list
-  }
+
+if (shoppingList.length === 0) {
+  emptyListDiv.style.display = 'block'; // Показати empty-list
+} else {
+  emptyListDiv.style.display = 'none'; // Приховати empty-list
 }
 
 
-function updateAndRenderShoppingList() {
-  shoppingListContainer.innerHTML = '';
-  addClickShowModal(); // Добавляем обработчики событий для модальных окон
-  renderShoppingList();
-}
+
 
 function removeFromShoppingList(bookId) {
   const updatedList = shoppingList.filter(item => item._id !== bookId);
   localStorage.setItem('shoppingList', JSON.stringify(updatedList));
-  shoppingList = updatedList; // Обновляем список в памяти
-  updateEmptyListDiv(); // Обновляем отображение empty-list
-  updateAndRenderShoppingList();
+  renderShoppingList();
 }
 
 function renderShoppingList() {
@@ -236,8 +229,6 @@ function addClickShowModal() {
 }
 
 renderShoppingList();
-updateEmptyListDiv();
-addClickShowModal();
 
 import './js/dark';
 import './js/support-ukraine.js';
