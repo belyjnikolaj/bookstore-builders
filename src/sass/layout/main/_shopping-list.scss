@@ -1,7 +1,7 @@
 .container-shopping-support {
     display: flex;
     margin-top: 40px;
-    margin-bottom: 0;
+    margin-bottom: 40px;
 
 }
 
@@ -275,18 +275,6 @@
         }
     }
 
-//     &__deleteBtn--icon {
-
-//         width: 28px;
-//         height: 28px;
-
-//         @media screen and (min-width: $tablet) {
-
-//             width: 34px;
-//             height: 34px; 
-        
-//     }
-// }
 }
 
 
@@ -312,3 +300,16 @@
         height: 27px;      
     }
 }
+
+.tui-pagination {
+    display: flex;
+    justify-content: center;
+
+    margin-top: 20px;
+
+    @media screen and (min-width: $tablet) {
+
+        margin-top: 40px;     
+    }
+}
+
