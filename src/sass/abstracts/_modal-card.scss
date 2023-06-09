@@ -24,12 +24,14 @@
   padding: 40px 24px;
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   position: fixed;
-  top: 28%;
+  top: 9%;
   left: 50%;
   transform: translateX(-50%) scale(1);
   background-color: $header-bgc-light;
   border: 2px solid #111111;
   border-radius: 18px;
+
+
 
   @media screen and (min-width: $tablet) {
     top: 56%;
@@ -197,7 +199,7 @@
   display: flex;
   align-items: center;
   margin-top: 14px;
-  margin-bottom: 40px;
+  margin-bottom: 14px;
 
   @media screen and (min-width: $tablet) {
     margin-top: 20px;
