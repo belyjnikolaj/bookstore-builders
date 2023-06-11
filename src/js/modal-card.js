@@ -22,18 +22,21 @@ let modalCardClose = '';
 if (isModalOpen) {
   modalCardClose = modalCardWrapper.querySelector('.modal-card_close');
 }
+//-----заборона скрола при відкритті модалки---
 window.addEventListener('scroll', () => {
   document.documentElement.style.setProperty(
     '--scroll-y',
     `${window.scrollY}px`
   );
 });
+//----------------------
 export function openModalCard(bookId) {
+  //-----заборона скрола при відкритті модалки---
   const scrollY = document.documentElement.style.getPropertyValue('--scroll-y');
   const body = document.body;
   body.style.position = 'fixed';
-
   body.style.top = `-${scrollY}`;
+  //-----------------
   if (!isModalOpen) {
     toggleModal();
     const data = bookApi
@@ -45,13 +48,13 @@ export function openModalCard(bookId) {
 }
 
 function closeModalCard() {
+  //-----заборона скрола при відкритті модалки---
   const body = document.body;
   const scrollY = body.style.top;
-
   body.style.position = '';
   body.style.top = '';
   window.scrollTo(0, parseInt(scrollY || '0') * -1);
-
+  //-----------------
   isModalOpen = false;
   toggleModal();
   clearModalContent();
