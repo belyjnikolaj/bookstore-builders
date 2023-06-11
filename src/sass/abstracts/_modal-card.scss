@@ -18,20 +18,19 @@
 }
 
 .modal-card {
+  overflow-y: auto;
   max-width: 335px;
   width: 100%;
   margin: 0 auto;
   padding: 40px 24px;
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   position: fixed;
-  top: 9%;
+  // top: 9%;
   left: 50%;
   transform: translateX(-50%) scale(1);
   background-color: $header-bgc-light;
   border: 2px solid #111111;
   border-radius: 18px;
-
-
 
   @media screen and (min-width: $tablet) {
     top: 56%;
@@ -203,7 +202,6 @@
   line-height: 1.29;
   letter-spacing: -0.01em;
   text-transform: uppercase;
-
 }
 
 .shopping-list-links {
